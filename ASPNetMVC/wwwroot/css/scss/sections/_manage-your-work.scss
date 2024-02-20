@@ -1,0 +1,62 @@
+#manage-your-work {
+    padding-bottom: 60px;
+    
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-top: 80px;
+
+        @include lg {
+            flex-direction: row;
+        }
+
+        img {
+            display: none;
+
+            @include md {
+                width: 40%;
+            }
+
+            @include lg {
+                display: block;
+                width: 60%;
+            }
+        }
+
+        .checklist {
+            align-self: center;
+            text-align: center;
+
+            @include lg {
+                padding-left: 60px;
+                text-align: left;
+            }
+
+            h1 {
+                @include h4;
+                padding-bottom: 20px;
+
+                @include md {
+                    @include h1;
+                }
+            }
+
+            p {
+                color: $gray-700;
+            }
+
+            i {
+                color: $theme;
+            }
+
+            .btn-theme {
+                display: inline-block;
+                margin-top: 30px;
+
+                i {
+                    color: $white;
+                }
+            }
+        }
+    }
+}

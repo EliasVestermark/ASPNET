@@ -1,8 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model HomeIndexViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@await Html.PartialAsync("~/Views/Shared/Sections/_ShowcasePartial.cshtml", Model.Showcase)
+@await Html.PartialAsync("~/Views/Shared/Sections/_FeaturesPartial.cshtml", Model.Features)
+@await Html.PartialAsync("~/Views/Shared/Sections/_ColourModePartial.cshtml", Model.ColourMode)
+@await Html.PartialAsync("~/Views/Shared/Sections/_ManageYourWorkPartial.cshtml", Model.ManageYourWork)
+@await Html.PartialAsync("~/Views/Shared/Sections/_DownloadPartial.cshtml", Model.Download)
+@await Html.PartialAsync("~/Views/Shared/Sections/_IntegrationPartial.cshtml", Model.Integration)
+@await Html.PartialAsync("~/Views/Shared/Sections/_SignUpNewsletterPartial.cshtml", Model.Newsletter)

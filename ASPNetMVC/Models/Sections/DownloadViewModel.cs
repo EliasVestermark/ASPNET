@@ -1,0 +1,11 @@
+﻿using ASPNetMVC.Models.Components;
+
+namespace ASPNetMVC.Models.Sections;
+
+public class DownloadViewModel
+{
+    public string Id { get; set; } = null!;
+    public string Title { get; set; } = null!;
+    public ImageViewModel Image { get; set; } = null!;
+    public List<ReviewViewModel> Reviews = null!;
+}

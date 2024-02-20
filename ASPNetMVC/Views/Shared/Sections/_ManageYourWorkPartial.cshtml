@@ -1,0 +1,17 @@
+﻿@model ManageYourWorkViewModel
+
+<section id="@Model.Id">
+    <div class="container">
+        <img src="@Model.Image.ImageUrl" alt="@Model.Image.Alt">
+        <div class="checklist">
+            <h1>@Model.Title</h1>
+
+            @foreach (var item in Model.ListItems!)
+            {
+                <p><i class="fa-regular fa-circle-check"></i> @item</p>
+            }
+            
+            <a class="btn-theme" href="#">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>

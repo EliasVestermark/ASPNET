@@ -1,0 +1,51 @@
+#integration {
+    padding: 80px 0;
+    .title {
+        text-align: center;
+
+        h1 {
+            @include h1;
+        }
+
+        h5 {
+            color: $gray-600;
+            font-weight: 500;
+            margin: 0 40px;
+
+            @include xl {
+                margin: 0 180px;
+
+            }
+        }
+    }
+
+    .tools {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding-top: 70px;
+
+        @include md {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include lg {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .tool {
+            padding: 30px;
+            transition: all 0.15s ease-in-out;
+
+            img {
+                padding-bottom: 20px;
+            }
+
+            &:hover {
+                transition: all 0.15s ease-in-out;
+                cursor: pointer;
+                background: $white;
+                @include shadow-m;
+            }
+        }
+    }
+}

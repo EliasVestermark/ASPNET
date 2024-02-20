@@ -1,0 +1,55 @@
+#colour-mode {
+    background: linear-gradient(to right, $gray-900 50%, $white 50%) ;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    position: relative;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        h1 {
+            @include h6;
+            padding-bottom: 80px;
+            margin-left: 20px;
+            
+            span {
+                color: $white;
+            }
+
+            @include md {
+                @include h3;
+                margin-left: 25px;
+            }
+
+            @include lg {
+                @include h1;
+                margin-left: 35px;
+            }
+        }
+    }
+
+    .divider {
+
+        .line {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            top: 0;
+            bottom: 0;
+            border: 2px solid $theme;
+        }
+
+        i {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%);
+            background-color: $theme;
+            color: $white;
+            padding: 10px;
+            border-radius: 20px;
+        }
+    }
+}

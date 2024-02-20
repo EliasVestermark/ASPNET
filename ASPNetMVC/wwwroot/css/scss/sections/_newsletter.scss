@@ -1,0 +1,142 @@
+#newsletter {
+    background: $gray-100;
+    padding-bottom: 60px;
+
+    .container {
+
+        .title {
+            display: flex;
+            padding: 80px 0 40px 0;
+            margin: 0 20px;
+
+            @include md {
+                margin: 0 80px;
+            }
+
+            @include lg {
+                margin: 0 180px;
+            }
+            
+            h1 {
+                @include h2;
+
+                @include xl {
+                    @include h1;
+                }
+            }
+
+            img {
+                display: none;
+
+                @include lg {
+                    margin-left: 30px;
+                    display: block;
+                }
+            }
+        }
+
+        .sign-up-for-newsletter {
+            display: flex;
+            flex-direction: column;
+            margin: 0 40px;
+
+            @include md {
+                margin: 0 80px;
+            }
+            
+            @include lg {
+                margin: 0 180px;
+                flex-direction: row;
+            }
+
+            .checkboxes {
+                display: grid;
+                grid-template-columns: 1fr;
+                margin: 0;
+
+                @include md {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                @include lg {
+                    margin: 0 100px;
+                }
+
+                @include xl {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                .checkbox {
+                    display: flex;
+                    margin-left: 0;
+                    text-wrap: nowrap;
+
+                    @include lg {
+                        margin-left: 40px;
+                    }
+
+                    p {
+                        margin-top: 16px;
+                        margin-left: 10px;
+                        color: $gray-700;
+                    }
+                }
+            }
+        }
+
+        .sign-up-form {
+            margin: 0 40px;
+
+            @include lg {
+                margin: 0 180px;
+            }
+
+            .email-and-button {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                margin-top: 20px;
+
+                @include md {
+                    flex-direction: row;
+                }
+
+                input {
+                    flex: 1;
+                    border: 2px solid $gray-400;
+                    border-radius: 8px;
+                    outline-color: $theme;
+                    padding-left: 30px;
+                }
+
+                ::placeholder {
+                    color: $gray-500;
+                }
+
+                i {
+                    position: absolute;
+                    left: 10px;
+                    top: 10px;
+                    color: $gray-500;
+                }
+
+                .btn-theme {
+                    margin-top: 20px;
+
+                    @include md {
+                        margin-top: 0;
+                        margin-left: 20px;
+                    }
+                }
+            }
+
+            span {
+                color: $theme;
+            }
+
+            .terms {
+                text-decoration: underline;
+            }
+        }
+    }
+}

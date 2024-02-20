@@ -1,0 +1,23 @@
+﻿@model DownloadViewModel
+
+<section id="@Model.Id">
+    <div class="container">
+        <img class="mobile-image" src="@Model.Image.ImageUrl" alt="@Model.Image.Alt">
+        <div class="reviews">
+            <h1>@Model.Title</h1>
+
+            @foreach (var review in @Model.Reviews)
+            {
+                <div class="review">
+                    <div>
+                        <p>@review.Name</p>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <h4>@review.Title</h4>
+                        <h6>@review.Rating</h6>
+                    </div>
+                    <img src="@review.Image.ImageUrl" alt="@review.Image.Alt">
+                </div>
+            }
+        </div>
+    </div>
+</section>

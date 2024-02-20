@@ -1,0 +1,32 @@
+﻿@model NewsletterViewModel
+
+<section id="@Model.Id">
+    <div class="container">
+        <div class="title">
+            <h1>@Model.Title</h1>
+            <img src="@Model.Image.ImageUrl" alt="@Model.Image.Alt">
+        </div>
+        <div class="sign-up-for-newsletter">
+            <h3>@Model.Text</h3>
+            <div class="checkboxes">
+
+                @foreach(var item in Model.Checkboxes)
+                {
+                    <div class="checkbox">
+                        <input type="checkbox" class="box" />
+                        <p>@item</p>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="sign-up-form">
+            <div class="email-and-button">
+                <input type="text" placeholder="Your Email">
+                <i class="fa-regular fa-envelope"></i>
+                <a class="btn-theme" href="#">Subscribe *</a>
+            </div>
+            <p><span>*</span> Yes, I agree to the <span class="terms">terms</span> and <span class="terms">privacy policy.</span></p>
+        </div>
+    </div>
+</section>

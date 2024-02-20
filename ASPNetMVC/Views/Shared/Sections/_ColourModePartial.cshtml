@@ -1,0 +1,12 @@
+﻿@model ColourModeViewModel
+
+<section id="@Model.Id">
+    <div class="container">
+        <h1><span>@Model.LightTitle</span> @Model.DarkTitle</h1>
+        <img src="@Model.Image.ImageUrl" alt="@Model.Image.Alt">
+    </div>
+    <div class="divider">
+        <div class="line"></div>
+        <i class="fa-solid fa-arrows-left-right"></i>
+    </div>
+</section>
