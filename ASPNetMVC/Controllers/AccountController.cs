@@ -9,14 +9,14 @@ namespace ASPNetMVC.Controllers
         {
             var viewModel = new AccountSignInViewModel();
             ViewData["Title"] = "Sign In";
-            return View();
+            return View(viewModel);
         }
 
         public IActionResult SignUp()
         {
             var viewModel = new AccountSignUpViewModel();
-            ViewData["Title"] = "Sign Up";
-            return View();
+            ViewData["Title"] = viewModel.Title;
+            return View(viewModel);
         }
     }
 }

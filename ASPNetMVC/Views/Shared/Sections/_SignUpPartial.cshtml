@@ -1,1 +1,39 @@
-﻿
+﻿@model SignUpViewModel
+
+<section id="@Model.Id">
+    <div class="container">
+        <div class="title">
+            <h1>@Model.Title</h1>
+            <p>@Model.Text <a asp-controller="Account" asp-action="SignIn">@Model.Link.Text</a></p>
+        </div>
+        <form class="sign-up-form">
+            <div class="full-name">
+                <div class="name">
+                    <label>First name</label>
+                    <input class="input" type="text" placeholder="Enter your first name">
+                </div>
+                <div class="name">
+                    <label>Last name</label>
+                    <input class="input" type="text" placeholder="Enter your last name">
+                </div>
+            </div>
+            <div class="email">
+                <label>Email</label>
+                <input class="input" type="text" placeholder="Enter your email address">
+            </div>
+            <div class="password">
+                <label>Password</label>
+                <input class="input" type="text" placeholder="********">
+            </div>
+            <div class="confirm-password">
+                <label>Confirm Password</label>
+                <input class="input" type="text" placeholder="********">
+            </div>
+            <div class="terms-and-policy">
+                <input type="checkbox">
+                <p>I agree to the <span class="terms">terms</span> and <span class="terms">privacy policy.</span></p>
+            </div>
+            <button class="btn-theme-s">Sign In</button>
+        </form>
+    </div>
+</section>
