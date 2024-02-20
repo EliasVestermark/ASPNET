@@ -5,61 +5,80 @@ header {
         display: grid;
         align-items: center;
         grid-template-columns: 1fr auto;
-        grid-template-areas:  "logo buttons";
-        gap: 20px;
-        
-        @include md {
+        grid-template-areas: "logo mobile" 
+                             "switch switch" 
+                             "buttons buttons" 
+                             "menu menu";
+        row-gap: 20px;
+
+        @include lg {
             grid-template-columns: auto 1fr auto auto;
-            grid-template-areas:  "logo menu switch buttons";
+            grid-template-areas: "logo menu switch buttons";
             gap: 40px;
         }
 
-        #logo { grid-area: logo; }
+        #logo {
+            grid-area: logo;
+        }
 
-        #menu { 
-            grid-area: menu; 
+        .hide {
             display: none;
+        }
+
+        #menu {
+            grid-area: menu;
+            justify-self: center;
 
             @include lg {
                 display: block;
+                justify-self: baseline;
             }
-            
+
             nav {
                 display: flex;
                 gap: 15px;
             }
         }
-        
-        .btn-switch { 
-            grid-area: switch; 
-            display: none;
+
+        .btn-switch {
+            grid-area: switch;
+            justify-self: center;
 
             @include lg {
                 display: block;
+                justify-self: baseline;
             }
         }
 
-        .account-buttons { 
-            grid-area: buttons; 
-            display: flex;
-            gap: 5px;
-            
-            p {
-                display: none;
+        #buttons {
+            grid-area: buttons;
 
-                @include md {
-                    display: contents;
+            p {
+                margin-bottom: 0;
+            }
+
+            a {
+                margin-bottom: 10px;
+
+                @include lg {
+                    margin-bottom: 0;
+                    margin-left: 10px;
                 }
             }
 
-            @include md {
-                gap: 15px;
+            @include lg {
+                display: flex;
+                flex-direction: row;
             }
         }
 
         .btn-mobile {
-            grid-area: mobile; 
+            grid-area: mobile;
             display: block;
+            font-size: 24px;
+            border: none;
+            background-color: $white;
+            color: $theme;
 
             @include lg {
                 display: none;
