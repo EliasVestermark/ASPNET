@@ -16,8 +16,8 @@
                 <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/silicon-logo-light_theme.svg" alt=""></a>
                 <div id="menu">
                     <nav>
-                        <a class="menu-link" href="#showcase">Overview</a>
-                        <a class="menu-link" href="#features">Features</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview</a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="features">Features</a>
                         <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
                     </nav>
                 </div>
