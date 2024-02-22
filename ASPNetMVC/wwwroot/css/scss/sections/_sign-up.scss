@@ -10,20 +10,37 @@
             a {
                 display: block;
             }
+
+            @include md {
+                text-align: left;
+
+                a {
+                    display: inline;
+                }
+            }
         }
 
         .sign-up-form {
-            
             display: flex;
             gap: 20px;
             flex-direction: column;
             text-align: left;
             border-bottom: 1px solid $gray-400;
 
+            .input-group {
+                display: flex;
+            }
+
             label {
-                display: block;
+                flex: 1;
+                display: inline;
                 font-weight: 600;
                 color: black;
+            }
+
+            span {
+                @include text-s;
+                color: $danger;
             }
 
             .input {
@@ -32,6 +49,11 @@
                 border-radius: 8px;
                 outline-color: $theme;
                 padding: 12px 10px;
+
+                &.input-validation-error {
+                    color: $danger;
+                    border-color: $danger;
+                }
             }
 
             .full-name {
@@ -42,7 +64,7 @@
                 @include md {
                     flex-direction: row;
                 }
-                
+
                 .name {
                     flex: 1;
                 }
@@ -55,7 +77,7 @@
             .terms-and-policy {
                 display: flex;
                 align-items: baseline;
-                
+
                 p {
                     margin: 0 8px;
                 }
@@ -63,7 +85,7 @@
                 span {
                     color: $theme;
                 }
-    
+
                 .terms {
                     text-decoration: underline;
                 }
@@ -71,6 +93,15 @@
 
             button {
                 border: none;
+            }
+
+            .error {
+                margin-top: -20px;
+
+                &.input-validation-error {
+                    color: $danger;
+                    border-color: $danger;
+                }
             }
 
             a {

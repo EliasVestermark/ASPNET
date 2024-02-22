@@ -1,3 +1,45 @@
-﻿@model AccountSignUpViewModel
+﻿@model SignUpViewModel
 
-@await Html.PartialAsync("~/Views/Shared/Sections/_SignUpPartial.cshtml", Model.SignUp)
+<section id="@Model.Id">
+    <div class="container">
+        <div class="title">
+            <h1>@Model.Title</h1>
+            <p>@Model.Text <a asp-controller="Account" asp-action="SignIn">@Model.Link.Text</a></p>
+        </div>
+        <form class="sign-up-form" method="post" asp-controller="Account" asp-action="SignUp" novalidate>
+            <div class="full-name">
+                <div class="input-group">
+                    <label asp-for="Form.FirstName"></label>
+                    <span asp-validation-for="Form.FirstName"></span>
+                    <input class="input" asp-for="Form.FirstName">
+                </div>
+                <div class="input-group">
+                    <label asp-for="Form.LastName"></label>
+                    <span asp-validation-for="Form.LastName"></span>
+                    <input class="input" asp-for="Form.LastName">
+                </div>
+            </div>
+            <div class="input-group">
+                <label asp-for="Form.Email"></label>
+                <span asp-validation-for="Form.Email"></span>
+                <input class="input" asp-for="Form.Email">
+            </div>
+            <div class="input-group">
+                <label asp-for="Form.Password"></label>
+                <span asp-validation-for="Form.Password"></span>
+                <input class="input" asp-for="Form.Password">
+            </div>
+            <div class="input-group">
+                <label asp-for="Form.ConfirmPassword"></label>
+                <span asp-validation-for="Form.ConfirmPassword"></span>
+                <input class="input" asp-for="Form.ConfirmPassword">
+            </div>
+            <div class="terms-and-policy">
+                <input asp-for="Form.TermsAndCondition" type="checkbox">
+                <label asp-for="Form.TermsAndCondition"> I agree to the <span class="terms">terms</span> and <span class="terms">privacy policy.</span></label>
+            </div>
+            <span class="error" asp-validation-for="Form.TermsAndCondition"></span>
+            <button class="btn-theme-s" type="submit">@Model.Title</button>
+        </form>
+    </div>
+</section>
