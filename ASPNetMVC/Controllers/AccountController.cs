@@ -1,5 +1,4 @@
 ﻿using ASPNetMVC.Models.Models;
-using ASPNetMVC.Models.Sections;
 using ASPNetMVC.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +29,7 @@ namespace ASPNetMVC.Controllers
 
         public IActionResult SignIn()
         {
-            var viewModel = new AccountSignInViewModel();
+            var viewModel = new SignInViewModel();
             ViewData["Title"] = "Sign In";
             return View(viewModel);
         }      

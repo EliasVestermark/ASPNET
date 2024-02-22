@@ -1,7 +1,7 @@
 ﻿using ASPNetMVC.Models.Components;
 using ASPNetMVC.Models.Models;
 
-namespace ASPNetMVC.Models.Sections;
+namespace ASPNetMVC.Models.Views;
 
 public class SignUpViewModel
 {
