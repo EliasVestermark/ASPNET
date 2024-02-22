@@ -1,0 +1,129 @@
+#sign-up {
+    margin-top: 80px;
+
+    .container {
+        max-width: 500px;
+
+        .title {
+            text-align: center;
+
+            a {
+                display: block;
+            }
+
+            @include md {
+                text-align: left;
+
+                a {
+                    display: inline;
+                }
+            }
+        }
+
+        .sign-up-form {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            text-align: left;
+            border-bottom: 1px solid $gray-400;
+
+            .input-group {
+                display: flex;
+            }
+
+            label {
+                flex: 1;
+                display: inline;
+                font-weight: 600;
+                color: black;
+            }
+
+            span {
+                @include text-s;
+                color: $danger;
+            }
+
+            .input {
+                width: 100%;
+                border: 1px solid $gray-400;
+                border-radius: 8px;
+                outline-color: $theme;
+                padding: 12px 10px;
+
+                &.input-validation-error {
+                    color: $danger;
+                    border-color: $danger;
+                }
+            }
+
+            .full-name {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                @include md {
+                    flex-direction: row;
+                }
+
+                .name {
+                    flex: 1;
+                }
+            }
+
+            ::placeholder {
+                color: $gray-500;
+            }
+
+            .terms-and-policy {
+                display: flex;
+                align-items: baseline;
+
+                p {
+                    margin: 0 8px;
+                }
+
+                span {
+                    color: $theme;
+                }
+
+                .terms {
+                    text-decoration: underline;
+                }
+            }
+
+            button {
+                border: none;
+            }
+
+            .error {
+                margin-top: -20px;
+
+                &.input-validation-error {
+                    color: $danger;
+                    border-color: $danger;
+                }
+            }
+
+            a {
+                font-weight: 600;
+                align-self: center;
+                padding-bottom: 30px;
+            }
+        }
+
+        .social-network {
+            margin-top: 30px;
+            text-align: center;
+
+            .buttons {
+                display: flex;
+                gap: 20px;
+                margin-top: 20px;
+
+                a {
+                    flex: 1;
+                }
+            }
+        }
+    }
+}
