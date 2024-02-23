@@ -5,10 +5,7 @@ header {
         display: grid;
         align-items: center;
         grid-template-columns: 1fr auto;
-        grid-template-areas: "logo mobile" 
-                             "switch switch" 
-                             "buttons buttons" 
-                             "menu menu";
+        grid-template-areas: "logo mobile" "switch switch" "buttons buttons" "menu menu";
         row-gap: 20px;
 
         @include lg {
@@ -38,6 +35,13 @@ header {
                 display: flex;
                 gap: 15px;
             }
+
+            .menu-link {
+
+                &.hide {
+                    display: none;
+                }
+            }
         }
 
         .btn-switch {
@@ -50,7 +54,7 @@ header {
             }
         }
 
-        #buttons {
+        .buttons {
             grid-area: buttons;
 
             p {
@@ -66,9 +70,17 @@ header {
                 }
             }
 
+            img {
+                max-width: 44px;
+            }
+
             @include lg {
                 display: flex;
                 flex-direction: row;
+            }
+
+            &.hide {
+                display: none;
             }
         }
 
