@@ -1,0 +1,90 @@
+#sign-in {
+    margin-top: 80px;
+
+    .container {
+        max-width: 500px;
+
+        .title {
+            text-align: center;
+
+            a {
+                display: block;
+            }
+        }
+
+        .sign-in-form {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            text-align: left;
+            border-bottom: 1px solid $gray-400;
+
+            label {
+                flex: 1;
+                display: block;
+                font-weight: 600;
+                color: black;
+            }
+
+            span {
+                @include text-s;
+                color: $danger;
+            }
+
+            .input-group {
+                display: flex;
+            }
+
+            .input {
+                width: 100%;
+                border: 1px solid $gray-400;
+                border-radius: 8px;
+                outline-color: $theme;
+                padding: 12px 10px;
+
+                &.input-validation-error {
+                    color: $danger;
+                    border-color: $danger;
+                }
+            }
+
+            ::placeholder {
+                color: $gray-500;
+            }
+
+            .remember-me {
+                display: flex;
+                align-items: baseline;
+
+                p {
+                    margin: 0 8px;
+                }
+            }
+
+            button {
+                border: none;
+            }
+
+            a {
+                font-weight: 600;
+                align-self: center;
+                padding-bottom: 30px;
+            }
+        }
+
+        .social-network {
+            margin-top: 30px;
+            text-align: center;
+
+            .buttons {
+                display: flex;
+                gap: 20px;
+                margin-top: 20px;
+
+                a {
+                    flex: 1;
+                }
+            }
+        }
+    }
+}

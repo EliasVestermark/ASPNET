@@ -27,11 +27,25 @@ namespace ASPNetMVC.Controllers
             return RedirectToAction("SignIn", "Account");
         }
 
+        [Route("/signin")]
+        [HttpGet]
         public IActionResult SignIn()
         {
             var viewModel = new SignInViewModel();
-            ViewData["Title"] = "Sign In";
+            ViewData["Title"] = viewModel.Title;
             return View(viewModel);
-        }      
+        }
+
+        [Route("/signin")]
+        [HttpPost]
+        public IActionResult SignIn(SignInViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            return RedirectToAction("SavedCourses", "Profile");
+        }
     }
 }
