@@ -1,1 +1,35 @@
-﻿
+﻿@model SignInViewModel
+
+<section id="@Model.Id">
+    <div class="container">
+        <div class="title">
+            <h1>@Model.Title</h1>
+            <p>@Model.Text <a asp-controller="Account" asp-action="SignUp">@Model.Link.Text</a></p>
+        </div>
+        <form class="sign-in-form" method="post" novalidate>
+            <div class="input-group">
+                <label asp-for="Form.Email"></label>
+                <span asp-validation-for="Form.Email"></span>
+                <input asp-for="Form.Email" class="input" >
+            </div>
+            <div class="input-group">
+                <label asp-for="Form.Password"></label>
+                <span asp-validation-for="Form.Password"></span>
+                <input asp-for="Form.Password" class="input">
+            </div>
+            <div class="remember-me">
+                <input asp-for="Form.RememberMe" type="checkbox">
+                <label asp-for="Form.RememberMe">Remember me</label>
+            </div>
+            <button class="btn-theme-s" type="submit">Sign In</button>
+            <a href="">Forgot your password?</a>
+        </form>
+        <div class="social-network">
+            <h6>Or sign in with your social network</h6>
+            <div class="buttons">
+                <a class="btn-gray"><i class="fa-brands fa-google"></i> Google</a>
+                <a class="btn-gray"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            </div>
+        </div>
+    </div>
+</section>
