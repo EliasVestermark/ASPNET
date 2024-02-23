@@ -16,18 +16,18 @@
             <div class="container">
                 <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/silicon-logo-light_theme.svg" alt=""></a>
                 <button class="btn-mobile" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
-                <div class="@((ViewContext.RouteData.Values["Controller"]!.ToString() != "Profile") ? "buttons" : "hide")">
+                <div id="buttons" class="@((ViewContext.RouteData.Values["Controller"]!.ToString() != "Profile") ? "buttons" : "hide-conditional")">
                     <a class="btn-gray" asp-controller="Account" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><p>Sign In</p></a>
                     <a class="btn-theme" asp-controller="Account" asp-action="SignUp"><i class="fa-regular fa-user"></i><p>Sign Up</p></a>
                 </div>
-                <div class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Profile") ? "buttons" : "hide")">
+                <div id="button" class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Profile") ? "button" : "hide-conditional")">
                     <img src="~/images/john.svg" alt="">
                 </div>                
                 <div id="menu">
                     <nav>
                         <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview</a>
-                        <a class="@((ViewContext.RouteData.Values["Controller"]!.ToString() != "Profile") ? "menu-link" : "hide")" asp-controller="Home" asp-action="Index" asp-fragment="features">Features</a>
-                        <a class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Profile") ? "menu-link" : "hide")" asp-controller="Profile" asp-action="Courses">Courses</a>
+                        <a class="@((ViewContext.RouteData.Values["Controller"]!.ToString() != "Profile") ? "menu-link" : "hide-conditional")" asp-controller="Home" asp-action="Index" asp-fragment="features">Features</a>
+                        <a class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Profile") ? "menu-link" : "hide-conditional")" asp-controller="Profile" asp-action="Courses">Courses</a>
                         <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
                     </nav>
                 </div>

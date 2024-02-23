@@ -22,6 +22,10 @@ header {
             display: none;
         }
 
+        .hide-conditional {
+            display: none;
+        }
+
         #menu {
             grid-area: menu;
             justify-self: center;
@@ -54,6 +58,19 @@ header {
             }
         }
 
+        .button {
+            grid-area: buttons;
+            display: none;
+
+            img {
+                width: 44px;
+            }
+
+            @include lg {
+                display: flex;
+            }
+        }
+
         .buttons {
             grid-area: buttons;
 
@@ -68,10 +85,6 @@ header {
                     margin-bottom: 0;
                     margin-left: 10px;
                 }
-            }
-
-            img {
-                width: 44px;
             }
 
             @include lg {
