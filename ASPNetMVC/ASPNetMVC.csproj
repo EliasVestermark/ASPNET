@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Profile\" />
     <Folder Include="wwwroot\css\scss\core\" />
     <Folder Include="wwwroot\css\scss\components\" />
     <Folder Include="wwwroot\images\" />

@@ -45,7 +45,7 @@ namespace ASPNetMVC.Controllers
                 return View(viewModel);
             }
 
-            return RedirectToAction("SavedCourses", "Profile");
+            return RedirectToAction("Index", "Profile");
         }
     }
 }
