@@ -1,0 +1,149 @@
+#profile-details {
+    padding-top: 40px;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+
+        @include md {
+            flex-direction: row;
+        }
+
+        .profile {
+            flex: 1;
+            padding-right: 10px;
+
+            @include md {
+                border-right: 1px solid $gray-400;
+            }
+
+            .image {
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                i {
+                    position: absolute;
+                    bottom: 0;
+                    left: calc(50% + 60px);
+                    transform: translate(-100%);
+                    padding: 10px;
+                    background-color: $white;
+                    border-radius: 50%;
+                }
+            }
+
+            .name-email {
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                width: 100%;
+                align-items: center;
+
+                @include md {
+                    align-items: baseline;
+                }
+            }
+        }
+
+        .details {
+            flex: 2;
+
+            @include md {
+                padding-left: 30px;
+            }
+
+            @include lg {
+                padding-left: 100px;
+                flex: 3;
+            }
+
+            label {
+                display: block;
+                font-weight: 600;
+                color: black;
+            }
+
+            h1 {
+                text-align: center;
+
+                @include md {
+                    text-align: left;
+                }
+            }
+
+            h4 {
+                color: $theme;
+                text-align: center;
+
+                @include md {
+                    text-align: left;
+                }
+            }
+
+            h6 {
+                font-weight: 600;
+
+                span {
+                    font-weight: 500;
+                    color: $gray-500;
+                }
+            }
+
+            .group {
+
+                @include md {
+                    display: flex;
+                    gap: 20px;
+                }
+            }
+
+            .label-input {
+                flex: 1;
+                padding-bottom: 30px;
+            }
+
+            span {
+                @include text-s;
+                color: $danger;
+            }
+
+            .input {
+                width: 100%;
+                border: 1px solid $gray-400;
+                border-radius: 8px;
+                outline-color: $theme;
+                padding: 12px 10px;
+
+                &.input-validation-error {
+                    color: $danger;
+                    border-color: $danger;
+                }
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin: 20px 0;
+
+                @include md {
+                    justify-content: baseline;
+                }
+            }
+
+            .basic-info {
+                border-bottom: 1px solid $gray-400;
+            }
+
+            .address {
+                margin-top: 30px;
+            }
+        }
+    }
+}
