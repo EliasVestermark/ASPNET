@@ -27,16 +27,19 @@
                 <div class="group">
                     <div class="label-input">
                         <label asp-for="BasicInfo.FirstName"></label>
+                        <span asp-validation-for="BasicInfo.FirstName"></span>
                         <input asp-for="BasicInfo.FirstName" class="input" type="text" >
                     </div>
                     <div class="label-input">
                         <label asp-for="BasicInfo.LastName"></label>
+                        <span asp-validation-for="BasicInfo.LastName"></span>
                         <input asp-for="BasicInfo.LastName" class="input" type="text">
                     </div>
                 </div>
                 <div class="group">
                     <div class="label-input">
                         <label asp-for="BasicInfo.Email"></label>
+                        <span asp-validation-for="BasicInfo.Email"></span>
                         <input asp-for="BasicInfo.Email" class="input" type="text">
                     </div>
                     <div class="label-input">
@@ -59,6 +62,7 @@
                 <div class="address-lines">
                     <div class="label-input">
                         <label asp-for="AddressInfo.AddresLine1"></label>
+                        <span asp-validation-for="AddressInfo.AddresLine1"></span>
                         <input asp-for="AddressInfo.AddresLine1" class="input" type="text">
                     </div>
                     <div class="label-input">
@@ -69,10 +73,12 @@
                 <div class="group">
                     <div class="label-input">
                         <label asp-for="AddressInfo.PostalCode"></label>
+                        <span asp-validation-for="AddressInfo.PostalCode"></span>
                         <input asp-for="AddressInfo.PostalCode" class="input">
                     </div>
                     <div class="label-input">
                         <label asp-for="AddressInfo.City"></label>
+                        <span asp-validation-for="AddressInfo.City"></span>
                         <input asp-for="AddressInfo.City" class="input" type="text">
                     </div>
                 </div>
@@ -84,3 +90,5 @@
         </div>
     </div>
 </section>
+
+@await Html.PartialAsync("_ValidationScriptPartial")

@@ -1,4 +1,4 @@
-const lengthValidator = (element, minlength = 1) => {
+const lengthValidator = (element, minlength = 2) => {
 
     if (element.length >= minlength) {
         return true;
@@ -59,33 +59,39 @@ const checkboxValidator = (element) => {
 }
 
 let forms = document.querySelectorAll('form');
-let inputs = forms[0].querySelectorAll('input');
+//let inputs = forms[0].querySelectorAll('input');
 
-inputs.forEach(input => {
+forms.forEach(form => {
+    let inputs = form.querySelectorAll('input')
 
-    if (input.dataset.val === 'true') {
+    inputs.forEach(input => {
 
-        if (input.type === 'checkbox') {
+        if (input.dataset.val === 'true') {
 
-            input.addEventListener('change', (e) => {
-                checkboxValidator(e.target);
-            })
-        } else {
-            input.addEventListener('keyup', (e) => {
+            if (input.type === 'checkbox') {
 
-                switch (e.target.type) {
-                    
-                    case 'text':
-                        textValidator(e.target);
-                        break;
-                    case 'email':
-                        emailValidator(e.target);
-                        break;
-                    case 'password':
-                        passwordValidator(e.target);
-                        break;
-                }
-            })
+                input.addEventListener('change', (e) => {
+                    checkboxValidator(e.target);
+                })
+            } else {
+                input.addEventListener('keyup', (e) => {
+
+                    switch (e.target.type) {
+
+                        case 'text':
+                            textValidator(e.target);
+                            break;
+                        case 'email':
+                            emailValidator(e.target);
+                            break;
+                        case 'password':
+                            passwordValidator(e.target);
+                            break;
+                    }
+                })
+            }
         }
-    }
+    })
 })
+
+

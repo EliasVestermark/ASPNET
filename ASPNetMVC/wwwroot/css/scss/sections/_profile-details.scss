@@ -64,7 +64,6 @@
             }
 
             label {
-                display: block;
                 font-weight: 600;
                 color: black;
             }
@@ -104,6 +103,7 @@
             }
 
             .label-input {
+                display: block;
                 flex: 1;
                 padding-bottom: 30px;
             }
@@ -114,6 +114,7 @@
             }
 
             .input {
+                display: block;
                 width: 100%;
                 border: 1px solid $gray-400;
                 border-radius: 8px;
