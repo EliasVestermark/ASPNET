@@ -2,6 +2,7 @@
 
 <section id="@Model.Id">
     <div class="container">
+        <h4 class="error-message">@ViewData["ErrorMessage"]</h4>
         <div class="title">
             <h1>@Model.Title</h1>
             <p>@Model.Text <a asp-controller="Account" asp-action="SignUp">@Model.Link.Text</a></p>

@@ -140,6 +140,10 @@
 
             .basic-info {
                 border-bottom: 1px solid $gray-400;
+
+                textarea {
+                    resize: none;
+                }
             }
 
             .address {

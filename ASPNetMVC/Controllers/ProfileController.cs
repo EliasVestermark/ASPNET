@@ -1,23 +1,30 @@
-﻿using ASPNetMVC.Models.Views;
+﻿using ASPNetMVC.Models.Models;
+using ASPNetMVC.Models.Views;
+using Infrastructure.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNetMVC.Controllers;
 
+[Authorize]
 public class ProfileController : Controller
 {
-    //private readonly ProfileService _profileService;
+    private readonly UserManager<UserEntity> _userManager;
 
-    //public ProfileController(ProfileService profileService)
-    //{
-    //    _profileService = profileService;
-    //}
+    public ProfileController(UserManager<UserEntity> userManager)
+    {
+        _userManager = userManager;
+    }
 
-    public IActionResult Index() 
-    { 
-        var viewModel = new ProfileIndexViewModel();
+    public async Task<IActionResult> Index() 
+    {
+        var userEntity = await _userManager.GetUserAsync(User);
 
-        //viewModel.BasicInfo = _profileService.GetBasicInfo();
-        //viewModel.AddressInfo = _profileService.GetAddressInfo();
+        var viewModel = new ProfileIndexViewModel
+        {
+            User = userEntity!
+        };
 
         return View(viewModel); 
     }
@@ -25,16 +32,39 @@ public class ProfileController : Controller
     [HttpPost]
     public IActionResult BasicInfo(ProfileIndexViewModel viewModel)
     {
-        //_profileService.SaveBasicInfo(viewModel.BasicInfo);
+        if (TryValidateModel(viewModel.BasicInfo))
+        {
+            return RedirectToAction("Index", "Profile", viewModel);
+        }
 
-        return RedirectToAction(nameof(Index), viewModel);
+        return RedirectToAction("Index", "Profile", viewModel);
     }
 
     [HttpPost]
     public IActionResult AddressInfo(ProfileIndexViewModel viewModel)
     {
-        //_profileService.SaveAddressInfo(viewModel.AddressInfo);
+        if (TryValidateModel(viewModel.AddressInfo))
+        {
+            return RedirectToAction("Index", "Profile", viewModel);
+        }
 
-        return RedirectToAction(nameof(Index), viewModel);
+        return RedirectToAction("Index", "Profile", viewModel);
     }
+
+    //private async Task<ProfileBasicInfoModel> PopulateProfileBasicInfoAsync()
+    //{
+    //    var user = await _userManager.GetUserAsync(User);
+    //    if (user != null)
+    //    {
+    //        return new ProfileBasicInfoModel
+    //        {
+    //            UserId = user.Id,
+    //            FirstName = user.FirstName,
+    //            LastName = user.LastName,
+    //            Email = user.Email!,
+    //            Phone = user.PhoneNumber,
+
+    //        };
+    //    }
+    //}
 }

@@ -4,6 +4,11 @@
     .container {
         max-width: 500px;
 
+        .error-message {
+            color: $danger;
+            text-align: center;
+        }
+
         .title {
             text-align: center;
 

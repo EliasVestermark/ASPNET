@@ -1,15 +1,25 @@
-﻿using ASPNetMVC.Models.Models;
-using ASPNetMVC.Models.Views;
+﻿using ASPNetMVC.Models.Views;
+using Infrastructure.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASPNetMVC.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager) : Controller
     {
+        private readonly UserManager<UserEntity> _userManager = userManager;
+        private readonly SignInManager<UserEntity> _signInManager = signInManager;
+
         [Route("/signup")]
         [HttpGet]
         public IActionResult SignUp()
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Profile");
+            }
+
             var viewModel = new SignUpViewModel();
             ViewData["Title"] = viewModel.Title;
             return View(viewModel);
@@ -17,20 +27,45 @@ namespace ASPNetMVC.Controllers
 
         [Route("/signup")]
         [HttpPost]
-        public IActionResult SignUp(SignUpViewModel viewModel)
+        public async Task<IActionResult> SignUp(SignUpViewModel viewModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(viewModel);
+                var exists = await _userManager.Users.AnyAsync(x => x.Email == viewModel.Form.Email);
+                if (exists)
+                {
+                    ModelState.AddModelError("AlreadyExists", "User with the same email already exists");
+                    ViewData["ErrorMessage"] = "User with the same email already exists";
+                    return View(viewModel);
+                }
+
+                var userEntity = new UserEntity
+                {
+                    FirstName = viewModel.Form.FirstName,
+                    LastName = viewModel.Form.LastName,
+                    Email = viewModel.Form.Email,
+                    UserName = viewModel.Form.Email
+                };
+
+                var result = await _userManager.CreateAsync(userEntity, viewModel.Form.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("SignIn", "Account");
+                }
             }
 
-            return RedirectToAction("SignIn", "Account");
+            return View(viewModel);
         }
 
         [Route("/signin")]
         [HttpGet]
         public IActionResult SignIn()
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Profile");
+            }
+
             var viewModel = new SignInViewModel();
             ViewData["Title"] = viewModel.Title;
             return View(viewModel);
@@ -38,14 +73,28 @@ namespace ASPNetMVC.Controllers
 
         [Route("/signin")]
         [HttpPost]
-        public IActionResult SignIn(SignInViewModel viewModel)
+        public async Task<IActionResult> SignIn(SignInViewModel viewModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(viewModel);
+                var result = await _signInManager.PasswordSignInAsync(viewModel.Form.Email, viewModel.Form.Password, viewModel.Form.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Profile");
+                }
             }
 
-            return RedirectToAction("Index", "Profile");
+            ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
+            ViewData["ErrorMessage"] = "Incorrect email or password";
+            return View(viewModel);
+        }
+
+        [Route("/signout")]
+        [HttpGet]
+        public new async Task<IActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("SignIn");
         }
     }
 }
