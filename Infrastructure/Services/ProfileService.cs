@@ -15,22 +15,4 @@ public class ProfileService
         _context = context;
         _userManager = userManager;
     }
-
-    //public async Task<bool> UpdateUserAsync (UserEntity user)
-    //{
-    //    try
-    //    {
-    //        var userResult = await _userManager.Users.FirstOrDefaultAsync(user => user.Email == user.Email);
-    //        if (userResult != null)
-    //        {
-    //            userResult.FirstName = user.FirstName;
-    //            userResult.LastName = user.LastName;
-    //            userResult.Email = user.Email;
-    //            userResult.UserName = user.Email;
-    //            userResult.PhoneNumber = user.PhoneNumber;
-    //        }
-        
-    //    }
-    //    catch { }
-    //}
 }

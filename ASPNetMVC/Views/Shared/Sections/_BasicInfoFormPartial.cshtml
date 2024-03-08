@@ -1,0 +1,38 @@
+﻿@model ProfileBasicInfoModel
+
+<form id="basicInfo" method="post" asp-controller="Profile" asp-action="BasicInfo" novalidate class="basic-info">
+    <h4>Basic Info</h4>
+    <div class="group">
+        <div class="label-input">
+            <label asp-for="@Model.FirstName"></label>
+            <span asp-validation-for="@Model.FirstName"></span>
+            <input asp-for="@Model.FirstName" class="input" type="text">
+        </div>
+        <div class="label-input">
+            <label asp-for="@Model.LastName"></label>
+            <span asp-validation-for="@Model.LastName"></span>
+            <input asp-for="@Model.LastName" class="input" type="text">
+        </div>
+    </div>
+    <div class="group">
+        <div class="label-input">
+            <label asp-for="@Model.Email"></label>
+            <span asp-validation-for="@Model.Email"></span>
+            <input asp-for="@Model.Email" class="input" type="text">
+        </div>
+        <div class="label-input">
+            <label asp-for="@Model.Phone"></label>
+            <span asp-validation-for="@Model.Phone"></span>
+            <input asp-for="@Model.Phone" class="input" type="text">
+        </div>
+    </div>
+    <div>
+        <h6>Bio <span>(optional)</span></h6>
+        <textarea asp-for="@Model.Bio" class="input"></textarea>
+    </div>
+    <input type="hidden" asp-for="@Model.UserId" />
+    <div class="buttons">
+        <button class="btn-gray" type="reset">Cancel</button>
+        <button class="btn-theme" type="submit">Save changes</button>
+    </div>
+</form>

@@ -1,0 +1,32 @@
+﻿@model ProfileAddressModel
+
+<form id="addressInfo" method="post" asp-controller="Profile" asp-action="AddressInfo" novalidate class="address">
+    <h4>Address</h4>
+    <div class="address-lines">
+        <div class="label-input">
+            <label asp-for="@Model.AddresLine1"></label>
+            <span asp-validation-for="@Model.AddresLine1"></span>
+            <input asp-for="@Model.AddresLine1" class="input" type="text">
+        </div>
+        <div class="label-input">
+            <label asp-for="@Model.AddresLine2"><h6>Address line 2 <span>(optional)</span></h6></label>
+            <input asp-for="@Model.AddresLine2" class="input" type="text">
+        </div>
+    </div>
+    <div class="group">
+        <div class="label-input">
+            <label asp-for="@Model.PostalCode"></label>
+            <span asp-validation-for="@Model.PostalCode"></span>
+            <input asp-for="@Model.PostalCode" class="input">
+        </div>
+        <div class="label-input">
+            <label asp-for="@Model.City"></label>
+            <span asp-validation-for="@Model.City"></span>
+            <input asp-for="@Model.City" class="input" type="text">
+        </div>
+    </div>
+    <div class="buttons">
+        <button type="reset" class="btn-gray">Cancel</button>
+        <button type="submit" class="btn-theme">Save changes</button>
+    </div>
+</form>

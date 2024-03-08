@@ -1,12 +1,14 @@
 using ASPNetMVC.Helpers;
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase")));
+builder.Services.AddScoped<AddressService>();
 
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {
@@ -24,6 +26,14 @@ builder.Services.ConfigureApplicationCookie(x =>
 
     x.LoginPath = "/signin";
     x.LoginPath = "/signout"; 
+});
+
+builder.Services.AddAuthentication().AddFacebook(x => 
+{
+    x.AppId = "905519511272067";
+    x.AppSecret = "5d6ad2d72d5f3ce49ed07438839edec7";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
 });
 
 var app = builder.Build();
