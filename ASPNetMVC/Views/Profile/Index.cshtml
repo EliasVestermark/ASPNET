@@ -1,12 +1,15 @@
 ﻿@model ProfileIndexViewModel
 @{
     ViewData["Title"] = $"{Model.BasicInfo.FirstName} {Model.BasicInfo.LastName}'s profile";
+    var isExternalAccount = Model.IsExternalAccount;
+    ViewData["IsExternalAccount"] = isExternalAccount;
 }
+
 <section id="@Model.Id">
     <div class="container">
         <div class="profile">
             <div class="image">
-                <img src="~/images/john.svg" alt="">
+                <img src="@Model.BasicInfo.ProfileImage" alt="">
                 <i class="fa-solid fa-arrows-rotate"></i>
             </div>
             <div class="name-email">
