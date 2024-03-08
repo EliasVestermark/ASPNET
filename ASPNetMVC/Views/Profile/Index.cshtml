@@ -1,7 +1,10 @@
 ﻿@model ProfileIndexViewModel
 @{
     ViewData["Title"] = $"{Model.BasicInfo.FirstName} {Model.BasicInfo.LastName}'s profile";
+    var isExternalAccount = Model.IsExternalAccount;
+    ViewData["IsExternalAccount"] = isExternalAccount;
 }
+
 <section id="@Model.Id">
     <div class="container">
         <div class="profile">
@@ -17,76 +20,16 @@
                 <a asp-controller="Profile" asp-action="Index" class="btn-white"><i class="fa-solid fa-gear"></i> Account Details</a>
                 <a asp-controller="Profile" asp-action="Security" class="btn-white"><i class="fa-solid fa-lock"></i> Security</a>
                 <a asp-controller="Profile" asp-action="Courses" class="btn-white"><i class="fa-solid fa-bookmark"></i> Saved Courses</a>
-                <a asp-controller="Profile" asp-action="SignOut" class="btn-white"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+                <a asp-controller="Account" asp-action="SignOut" class="btn-white"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
             </div>
         </div>
         <div class="details">
             <h1>@Model.Title</h1>
-            <form method="post" asp-controller="Profile" asp-action="BasicInfo" novalidate class="basic-info">
-                <h4>Basic Info</h4>
-                <div class="group">
-                    <div class="label-input">
-                        <label asp-for="BasicInfo.FirstName"></label>
-                        <span asp-validation-for="BasicInfo.FirstName"></span>
-                        <input asp-for="BasicInfo.FirstName" class="input" type="text" >
-                    </div>
-                    <div class="label-input">
-                        <label asp-for="BasicInfo.LastName"></label>
-                        <span asp-validation-for="BasicInfo.LastName"></span>
-                        <input asp-for="BasicInfo.LastName" class="input" type="text">
-                    </div>
-                </div>
-                <div class="group">
-                    <div class="label-input">
-                        <label asp-for="BasicInfo.Email"></label>
-                        <span asp-validation-for="BasicInfo.Email"></span>
-                        <input asp-for="BasicInfo.Email" class="input" type="text">
-                    </div>
-                    <div class="label-input">
-                        <label asp-for="BasicInfo.Phone"></label>
-                        <span asp-validation-for="BasicInfo.Phone"></span>
-                        <input asp-for="BasicInfo.Phone" class="input" type="text">
-                    </div>
-                </div>
-                <div>
-                    <h6>Bio <span>(optional)</span></h6>
-                    <input asp-for="BasicInfo.Bio" class="input">
-                </div>
-                <div class="buttons">
-                    <button class="btn-gray" type="reset">Cancel</button>
-                    <button class="btn-theme" type="submit">Save changes</button>
-                </div>
-            </form>
-            <form method="post" asp-controller="Profile" asp-action="AddressInfo" novalidate class="address">
-                <h4>Address</h4>
-                <div class="address-lines">
-                    <div class="label-input">
-                        <label asp-for="AddressInfo.AddresLine1"></label>
-                        <span asp-validation-for="AddressInfo.AddresLine1"></span>
-                        <input asp-for="AddressInfo.AddresLine1" class="input" type="text">
-                    </div>
-                    <div class="label-input">
-                        <label asp-for="AddressInfo.AddresLine2"><h6>Address line 2 <span>(optional)</span></h6></label>
-                        <input asp-for="AddressInfo.AddresLine2" class="input" type="text">
-                    </div>
-                </div>
-                <div class="group">
-                    <div class="label-input">
-                        <label asp-for="AddressInfo.PostalCode"></label>
-                        <span asp-validation-for="AddressInfo.PostalCode"></span>
-                        <input asp-for="AddressInfo.PostalCode" class="input">
-                    </div>
-                    <div class="label-input">
-                        <label asp-for="AddressInfo.City"></label>
-                        <span asp-validation-for="AddressInfo.City"></span>
-                        <input asp-for="AddressInfo.City" class="input" type="text">
-                    </div>
-                </div>
-                <div class="buttons">
-                    <button type="reset" class="btn-gray">Cancel</button>
-                    <button type="submit" class="btn-theme">Save changes</button>
-                </div>
-            </form>
+
+            @await Html.PartialAsync("~/Views/Shared/Sections/_BasicInfoFormPartial.cshtml", Model.BasicInfo);
+
+            @await Html.PartialAsync("~/Views/Shared/Sections/_AddressFormPartial.cshtml", Model.AddressInfo);
+
         </div>
     </div>
 </section>

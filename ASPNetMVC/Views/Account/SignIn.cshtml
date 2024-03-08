@@ -2,6 +2,7 @@
 
 <section id="@Model.Id">
     <div class="container">
+        <h4 class="error-message">@ViewData["ErrorMessage"]</h4>
         <div class="title">
             <h1>@Model.Title</h1>
             <p>@Model.Text <a asp-controller="Account" asp-action="SignUp">@Model.Link.Text</a></p>
@@ -27,8 +28,8 @@
         <div class="social-network">
             <h6>Or sign in with your social network</h6>
             <div class="buttons">
-                <a class="btn-gray"><i class="fa-brands fa-google"></i> Google</a>
-                <a class="btn-gray"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a asp-action="Google" asp-controller="Account" class="btn-gray"><i class="fa-brands fa-google"></i> Google</a>
+                <a asp-action="Facebook" asp-controller="Account" class="btn-gray"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
             </div>
         </div>
     </div>
