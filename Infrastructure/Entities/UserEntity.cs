@@ -9,8 +9,13 @@ public class UserEntity : IdentityUser
 
     [ProtectedPersonalData]
     public string LastName { get; set; } = null!;
-    
-    public string? Bio { get; set; } 
+
+    [ProtectedPersonalData]
+    public string? ProfileImageUrl { get; set; }
+
+    public string? Bio { get; set; }
+
+    public bool IsExternalAccount { get; set; } = false;
 
     public int? AddressId { get; set; }
     public AddressEntity? Address { get; set; }

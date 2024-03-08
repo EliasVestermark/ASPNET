@@ -97,7 +97,8 @@ public class ProfileController : Controller
                 LastName = user.LastName,
                 Email = user.Email!,
                 Phone = user.PhoneNumber,
-                Bio = user.Bio
+                Bio = user.Bio,
+                ProfileImage = "/images/john.svg"
             };
         }
 
@@ -129,10 +130,13 @@ public class ProfileController : Controller
 
     private async Task<ProfileIndexViewModel> PopulateProfileIndexAsync()
     {
+        var user = await _userManager.GetUserAsync(User);
+
         return new ProfileIndexViewModel
         {
             BasicInfo = await PopulateProfileBasicInfoAsync(),
-            AddressInfo = await PopulateAddressInfoAsync()
+            AddressInfo = await PopulateAddressInfoAsync(),
+            IsExternalAccount = user!.IsExternalAccount
         };
     }
 }

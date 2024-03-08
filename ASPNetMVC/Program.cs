@@ -36,6 +36,12 @@ builder.Services.AddAuthentication().AddFacebook(x =>
     x.Fields.Add("last_name");
 });
 
+builder.Services.AddAuthentication().AddGoogle(x =>
+{
+    x.ClientId = "885765406612-3edd6d8h7lgpnv5s0fk5fug2u6jegmng.apps.googleusercontent.com";
+    x.ClientSecret = "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";
+});
+
 var app = builder.Build();
 app.UseHsts();
 app.UseStatusCodePagesWithReExecute("/error", "?statusCode={0}");
