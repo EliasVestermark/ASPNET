@@ -7,31 +7,26 @@
         overflow: hidden;
     }
 
+    .background-image {
+        display: none;
+
+        @include xl {
+            display: block;
+            float: right;
+            width: 50%;
+            max-width: 1200px;
+        }
+    }
+
     .container {
         height: 100%;
-
-        .background-image {
-            display: none;
-        }
-
-        @include lg {
-            display: flex;
-        }
-
-        .background-image { 
-            display: none;
-
-            @include lg {
-                display: block;
-            }
-        }
 
         .content {
             margin-top: 0px;
             width: 100%;
             text-align: center;
 
-            @include lg {
+            @include xl {
                 margin-top: 100px;
                 width: 40%;
                 text-align: left;

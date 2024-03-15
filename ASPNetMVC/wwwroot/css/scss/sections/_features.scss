@@ -54,13 +54,13 @@
                 &:hover {
                     transition: all 0.15s ease-in-out;
                     cursor: pointer;
-                    background: $white;
+                    background: $white-hover;
                     @include shadow-m;
                 }
 
                 img {
                     padding: 10px;
-                    background-color: $gray-100;
+                    background-color: $gray-100-download;
                     margin: 20px;
                     border-radius: 8px;
                 }

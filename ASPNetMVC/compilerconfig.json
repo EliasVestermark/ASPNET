@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/Site.css",
     "inputFile": "wwwroot/css/Site.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Site-Dark.css",
+    "inputFile": "wwwroot/css/Site-Dark.scss"
   }
 ]

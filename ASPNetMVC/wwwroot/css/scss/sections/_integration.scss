@@ -43,7 +43,7 @@
             &:hover {
                 transition: all 0.15s ease-in-out;
                 cursor: pointer;
-                background: $white;
+                background: $white-hover;
                 @include shadow-m;
             }
         }

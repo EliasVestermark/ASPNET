@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ASPNetMVC.Models.Views;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNetMVC.Controllers
 {
@@ -8,6 +9,16 @@ namespace ASPNetMVC.Controllers
         {
             ViewData["Title"] = "Contact Us";
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(ContacIndexViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+            return View(viewModel);
         }
     }
 }

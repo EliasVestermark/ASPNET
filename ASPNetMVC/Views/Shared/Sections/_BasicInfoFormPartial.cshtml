@@ -3,8 +3,10 @@
     var isExternalAccount = (bool)ViewData["IsExternalAccount"]!;
 }
 
+<h1>Account Details</h1>
 <form id="basicInfo" method="post" asp-controller="Profile" asp-action="BasicInfo" novalidate class="basic-info">
     <h4>Basic Info</h4>
+    <h5 class="message @((Model.ErrorMessage != "Success!") ? "error" : "success")">@Model.ErrorMessage</h5>
     <div class="group">
         <div class="label-input">
             <label asp-for="@Model.FirstName"></label>

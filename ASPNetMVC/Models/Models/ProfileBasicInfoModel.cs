@@ -4,6 +4,8 @@ namespace ASPNetMVC.Models.Models;
 
 public class ProfileBasicInfoModel
 {
+    public string? ErrorMessage { get; set; }
+
     public string UserId { get; set; } = null!;
 
     [DataType(DataType.ImageUrl)]

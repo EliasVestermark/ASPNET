@@ -6,6 +6,10 @@ footer {
     .container {
         text-align: center;
 
+        .hide {
+            display: none;
+        }
+
         .social-media {
             display: flex;
             justify-content: center;

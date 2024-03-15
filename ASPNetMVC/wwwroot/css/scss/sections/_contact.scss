@@ -1,0 +1,126 @@
+#contact {
+    background: $gray-100;
+    overflow: hidden;
+
+    .container {
+        padding-top: 30px;
+        position: relative;
+
+        .navigation {
+            padding-bottom: 40px;
+
+            .home {
+                color: $gray-600;
+            }
+        }
+
+        .contact-us {
+            padding-bottom: 120px;
+
+            h1 {
+                text-align: center;
+
+                @include md {
+                    text-align: left;
+                }
+            }
+
+            .icon-and-text {
+                display: flex;
+                margin-top: 50px;
+                width: 400px;
+            }
+
+            .icon {
+                color: $theme;
+                background-color: $white;
+                padding: 16px;
+                font-size: 22px;
+                border-radius: 50%;
+            }
+
+            .text {
+                margin-left: 34px;
+            }
+        }
+
+        .sign-in-form {
+            background-color: $white;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            top: 10%;
+            right: 0;
+            text-align: center;
+
+            @include lg {
+                position: absolute;
+                width: 50%;
+                text-align: left;
+            }
+
+            .label-input {
+                padding-bottom: 20px;
+                display: flex;
+                flex-direction: column;
+
+                .label-span {
+                    display: flex;
+                    justify-content: space-between;
+
+                    label {
+                        font-weight: 600;
+                        color: $gray-900;
+                    }
+
+                    span {
+                        @include text-s;
+                        color: $danger;
+                    }
+
+                    .optional {
+                        color: $gray-600;
+                    }
+                }
+
+                textarea {
+                    resize: none;
+                }
+            }
+
+            .input {
+                flex: 1;
+                display: block;
+                border: 1px solid $gray-300;
+                border-radius: 8px;
+                outline-color: $theme;
+                padding: 12px 10px;
+                background-color: $white-input;
+                color: $gray-600;
+
+                &.input-validation-error {
+                    color: $danger;
+                    border-color: $danger;
+                }
+            }
+
+            ::placeholder {
+                color: $gray-500;
+            }
+
+            button {
+                align-self: baseline;
+            }
+        }
+    }
+
+    .map {
+        display: none;
+
+        @include lg {
+            display: block;
+            width: 100vw;
+        }
+    }
+}

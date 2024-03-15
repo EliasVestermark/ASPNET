@@ -16,7 +16,7 @@
             @include lg {
                 margin: 0 180px;
             }
-            
+
             h1 {
                 @include h2;
 
@@ -43,7 +43,7 @@
             @include md {
                 margin: 0 80px;
             }
-            
+
             @include lg {
                 margin: 0 180px;
                 flex-direction: row;
@@ -91,22 +91,32 @@
                 margin: 0 180px;
             }
 
+            .error {
+                color: $danger;
+                min-height: 200px;
+            }
+
             .email-and-button {
                 display: flex;
                 flex-direction: column;
                 position: relative;
-                margin-top: 20px;
 
                 @include md {
                     flex-direction: row;
                 }
 
-                input {
+                .input {
                     flex: 1;
-                    border: 2px solid $gray-400;
+                    border: 2px solid $gray-300;
                     border-radius: 8px;
                     outline-color: $theme;
                     padding-left: 30px;
+                    background-color: $white-input;
+
+                    &.input-validation-error {
+                        color: $danger;
+                        border-color: $danger;
+                    }
                 }
 
                 ::placeholder {

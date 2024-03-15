@@ -25,7 +25,7 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.SlidingExpiration = true;
 
     x.LoginPath = "/signin";
-    x.LoginPath = "/signout"; 
+    x.LogoutPath = "/signout"; 
 });
 
 builder.Services.AddAuthentication().AddFacebook(x => 

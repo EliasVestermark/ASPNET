@@ -1,6 +1,7 @@
 html, body {
     @include standard-text;
-    font-size: 16px; 
+    font-size: 16px;
+    background-color: $white;
 }
 
 .text-xs { @include text-xs; }

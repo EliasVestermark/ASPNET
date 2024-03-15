@@ -1,0 +1,228 @@
+#profile-security {
+    padding-top: 40px;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+
+        @include md {
+            flex-direction: row;
+        }
+
+        .profile {
+            flex: 1;
+            padding-right: 10px;
+
+            @include md {
+                border-right: 1px solid $gray-400;
+            }
+
+            .image {
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                i {
+                    position: absolute;
+                    bottom: 0;
+                    left: calc(50% + 60px);
+                    transform: translate(-100%);
+                    padding: 10px;
+                    background-color: $white;
+                    border-radius: 50%;
+                }
+            }
+
+            .name-email {
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                width: 100%;
+                align-items: center;
+
+                @include md {
+                    align-items: baseline;
+                }
+            }
+        }
+
+        .details {
+            flex: 2;
+
+            @include md {
+                padding-left: 30px;
+            }
+
+            @include lg {
+                padding-left: 100px;
+                flex: 3;
+            }
+
+            h4 {
+                color: $theme;
+                text-align: center;
+
+                @include md {
+                    text-align: left;
+                }
+            }
+
+            .message {
+                text-align: center;
+
+                @include md {
+                    text-align: left;
+                }
+
+                &.error {
+                    color: $danger;
+                }
+
+                &.success {
+                    color: #048316;
+                }
+            }
+
+            .basic-info {
+                border-bottom: 1px solid $gray-400;
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 30px;
+
+                .current-password {
+
+                    @include md {
+                        width: calc(50% - 10px);
+                    }
+                }
+
+                .group {
+
+                    @include md {
+                        display: flex;
+                        gap: 20px;
+                    }
+                }
+
+                .label-input {
+                    padding-bottom: 20px;
+                    display: flex;
+                    flex: 1;
+                    flex-direction: column;
+
+                    .label-span {
+                        display: flex;
+                        justify-content: space-between;
+
+                        label {
+                            font-weight: 600;
+                            color: $gray-900;
+                        }
+
+                        span {
+                            @include text-s;
+                            color: $danger;
+                        }
+                    }
+                }
+
+                .input {
+                    flex: 1;
+                    display: block;
+                    border: 1px solid $gray-300;
+                    border-radius: 8px;
+                    outline-color: $theme;
+                    padding: 12px 10px;
+                    background-color: $white-input;
+
+                    &:disabled {
+                        background-color: $gray-300;
+                    }
+
+                    &.input-validation-error {
+                        color: $danger;
+                        border-color: $danger;
+                    }
+                }
+
+                ::placeholder {
+                    color: $gray-500;
+                }
+
+                button {
+                    align-self: baseline;
+                }
+
+                .buttons {
+                    display: flex;
+                    align-self: center;
+                    justify-content: center;
+                    gap: 10px;
+                    margin: 20px 0;
+
+                    @include md {
+                        justify-content: baseline;
+                        align-self: baseline;
+                    }
+                }
+            }
+
+            h1 {
+                text-align: center;
+
+                @include md {
+                    text-align: left;
+                }
+            }
+
+            .delete-account {
+                margin-top: 40px;
+                padding: 0 20px 60px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+
+                @include md {
+                    padding: 0 0 60px;
+                    text-align: left;
+                }
+
+                .checkbox {
+                    display: flex;
+                    align-items: baseline;
+                    align-self: center;
+                    padding-bottom: 30px;
+
+                    @include md {
+                        align-self: baseline;
+                    }
+
+                    p {
+                        margin: 0 8px;
+                    }
+
+                    span {
+                        color: $theme;
+                    }
+
+                    .terms {
+                        text-decoration: underline;
+                    }
+                }
+
+                .btn-red {
+                    align-self: center;
+
+                    @include md {
+                        align-self: baseline;
+                    }
+                }
+            }
+        }
+    }
+}

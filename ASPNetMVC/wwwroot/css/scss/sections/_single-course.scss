@@ -1,0 +1,410 @@
+#single-course {
+
+    .top {
+        position: relative;
+        overflow: hidden;
+        width: 100dvw;
+
+        .background {
+            width: 100%;
+            min-width: 1920px;
+        }
+
+        .container {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+
+            .navigation {
+                padding-bottom: 40px;
+
+                a {
+                    color: #E2E5F1;
+                }
+
+                i {
+                    padding: 0 12px;
+                }
+
+                .home {
+                    color: #9397AD;
+                }
+            }
+
+            .tags {
+                display: flex;
+                margin-top: 20px;
+                gap: 20px;
+
+                @include md {
+                    margin-top: 80px;
+                }
+
+                .best-seller {
+                    color: #FFFFFF;
+                    background-color: $success;
+                    padding: 0 14px;
+                    border-radius: 6px;
+                }
+
+                .digital {
+                    color: #0B0F19;
+                    background-color: #FFFFFF;
+                    padding: 0 14px;
+                    border-radius: 6px;
+                }
+            }
+
+            .title {
+
+                h1 {
+                    @include h4;
+                    color: #FFFFFF;
+
+                    @include md {
+                        @include h1;
+                        color: #FFFFFF;
+                    }
+                }
+
+                h5 {
+                    @include h6;
+                    color: #D4D7E5;
+                    font-weight: 200;
+
+                    @include md {
+                        @include h5;
+                        font-weight: 200;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+
+            .rating {
+                margin-top: 30px;
+                display: flex;
+                gap: 30px;
+
+                @include md {
+                    margin-top: 80px;
+                }
+
+                .stars {
+                    display: flex;
+
+                    p {
+                        padding-left: 10px;
+                        margin: 0;
+                    }
+
+                    .fa-star {
+                        align-self: center;
+                        color: rgb(255, 196, 0);
+                    }
+                }
+
+                p {
+                    color: #B4B7C9;
+                    margin: 0;
+                }
+
+                .reviews {
+                    display: none;
+                    padding: 0 30px;
+                    border-left: 1px solid #565973;
+                    border-right: 1px solid #565973;
+
+                    @include md {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .author-image {
+                display: flex;
+                gap: 20px;
+                margin-top: 50px;
+
+                @include lg {
+                    margin-top: 130px;
+                }
+
+                .author-logo {
+                    max-width: 60px;
+                }
+
+                p {
+                    margin: 0;
+                    color: #FFFFFF;
+
+                    span {
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+    .container {
+
+        .description {
+            display: flex;
+            flex-direction: column;
+            margin-top: 120px;
+
+            @include lg {
+                flex-direction: row;
+            }
+
+            .left {
+                flex: 2;
+
+                @include lg {
+                    padding-right: 110px;
+                }
+
+                h1 {
+                    @include h1;
+                    padding-bottom: 20px;
+                }
+
+                p {
+                    color: $gray-700;
+                    margin-bottom: 6px;
+                }
+
+                .checklist {
+                    margin-top: 50px;
+                    align-self: center;
+                    text-align: left;
+
+                    h1 {
+                        @include h4;
+                        padding-bottom: 20px;
+
+                        @include md {
+                            @include h1;
+                        }
+                    }
+
+                    .item {
+                        display: flex;
+
+                        i {
+                            color: $theme;
+                            padding-right: 10px;
+                            margin-top: 4px;
+                        }
+                    }
+
+                    .btn-theme {
+                        display: inline-block;
+                        margin-top: 30px;
+                    }
+                }
+            }
+
+            .right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                @include shadow-l;
+                padding: 20px;
+                margin-top: 40px;
+                align-items: baseline;
+
+                @include md {
+                    padding: 40px;
+                }
+
+                @include lg {
+                    margin-top: 0;
+                }
+
+                .includes {
+
+                    p {
+                        color: $gray-600;
+                    }
+
+                    .icon {
+                        padding-right: 10px;
+                    }
+                }
+
+                .price {
+                    margin-top: 30px;
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+
+                    .old-price {
+                        color: $gray-600;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        .details {
+            margin-top: 100px;
+            width: 100%;
+
+            @include lg {
+                width: 66%;
+            }
+
+            h1 {
+                @include h1;
+                padding-bottom: 40px;
+            }
+
+            .list {
+                position: relative;
+
+                .line {
+                    display: none;
+                    position: absolute;
+                    z-index: 0;
+                    top: 20px;
+                    bottom: 20px;
+                    left: 36px;
+                    border: 2px solid $gray-100;
+
+                    @include md {
+                        display: block;
+                    }
+                }
+
+                .item {
+                    display: flex;
+
+                    h3 {
+                        display: none;
+                        z-index: 1;
+                        @include h3;
+                        align-self: center;
+                        padding: 4px 19px;
+                        border: 10px solid $gray-100;
+                        border-radius: 50%;
+                        background-color: $white;
+
+                        @include md {
+                            display: block;
+                        }
+                    }
+
+                    .info {
+                        border-radius: 0;
+                        margin-left: 0;
+
+                        @include md {
+                            margin-left: 40px;
+                        }
+
+                        h3 {
+                            display: block;
+                            border: none;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .author-about {
+            margin-top: 60px;
+            position: relative;
+            border: 2px solid $white-hover;
+            border-radius: 12px;
+            background-color: #0B0F19;
+            overflow: hidden;
+            padding-bottom: 20px;
+
+            @include lg {
+                height: 400px;
+            }
+
+            @include xl {
+                height: auto;
+                padding-bottom: 0;
+            }
+
+            .pattern {
+                display: none;
+
+                @include md {
+                    display: block;
+                }
+            }
+
+            .author-image {
+                display: none;
+                position: absolute;
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+                top: 0;
+                left: 0;
+
+                @include xl {
+                    display: block;
+                }
+            }
+
+            .about {
+                padding-left: 20px;
+                padding-right: 20px;
+
+                @include md {
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    padding-right: 200px;
+                }
+
+                @include xl {
+                    top: 100px;
+                    right: 100px;
+                    padding-right: 0;
+                    left: auto;
+                    max-width: 526px;
+                }
+
+                h2 {
+                    @include h4;
+                    color: #FFFFFF;
+
+                    @include md {
+                        @include h2;
+                        color: #FFFFFF;
+                        padding-right: 200px;
+                    }
+                }
+
+                p {
+                    margin-top: 10px;
+                    margin-bottom: 0;
+                    color: #aeaeb1;
+                    font-size: 14px;
+
+                    @include md {
+                        font-size: 16px;
+                    }
+                }
+
+                .buttons {
+                    margin-top: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    @include md {
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+    }
+}
