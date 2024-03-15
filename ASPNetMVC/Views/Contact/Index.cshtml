@@ -1,1 +1,68 @@
-﻿
+﻿@model ContacIndexViewModel
+
+<section id="contact">
+    <div class="container">
+        <div class="navigation">
+            <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i> Home <i class="fa-solid fa-angles-right"></i></a>
+            <a href="">Contact</a>
+        </div>
+        <div class="contact-us">
+            <h1>Contact Us</h1>
+            <div class="icon-and-text">
+                <p><i class="fa-regular fa-envelope icon"></i></p>
+                <div class="text">
+                    <h3>Email us</h3>
+                    <p>Please feel free to drop us a line. We will respond as soon as possible.</p>
+                    <a href="">Leave a message <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="icon-and-text">
+                <p><i class="fa-solid fa-user-plus icon"></i></p>
+                <div class="text">
+                    <h3>Careers</h3>
+                    <p>Sit ac ipsum leo lorem magna nunc mattis maecenas non vestibulum.</p>
+                    <a href="">Send an application <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <form class="sign-in-form" novalidate method="post" asp-controller="Contact" asp-action="Index">
+            <h2>Get In Contact With Us</h2>
+            <div class="label-input">
+                <div class="label-span">
+                    <label asp-for="@Model.FullName"></label>
+                    <span asp-validation-for="@Model.FullName"></span>
+                </div>
+                <input asp-for="@Model.FullName" class="input" type="text" placeholder="Enter your full name">
+            </div>
+            <div class="label-input">
+                <div class="label-span">
+                    <label asp-for="@Model.Email"></label>
+                    <span asp-validation-for="@Model.Email"></span>
+                </div>
+                <input asp-for="@Model.Email" class="input" placeholder="Enter your email">
+            </div>
+            <div class="label-input">
+                <div class="label-span">
+                    <label asp-for="@Model.Service">Service <span class="optional">(optional)</span></label>
+                </div>
+                <select asp-for="@Model.Service" class="input">
+                    <option value="">Choose the service you are intrested in</option>
+                    <option value="Service 1">Service 1</option>
+                    <option value="Service 2">Service 2</option>
+                    <option value="Service 3">Service 3</option>
+                </select>
+            </div>
+            <div class="label-input">
+                <div class="label-span">
+                    <label asp-for="@Model.Message"></label>
+                    <span asp-validation-for="@Model.Message"></span>
+                </div>
+                <textarea asp-for="@Model.Message" class="input" placeholder="Enter your full name" rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn-theme">Send Contact Request</button>
+        </form>
+    </div>
+    <img class="map" src="~/images/map.svg" alt="map">
+</section>
+
+@await Html.PartialAsync("_ValidationScriptPartial")

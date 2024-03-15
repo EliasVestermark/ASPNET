@@ -1,0 +1,173 @@
+#profile-saved-courses {
+    padding-top: 40px;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+
+        @include md {
+            flex-direction: row;
+        }
+
+        .profile {
+            flex: 1;
+            padding-right: 10px;
+
+            @include md {
+                border-right: 1px solid $gray-400;
+            }
+
+            .image {
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                i {
+                    position: absolute;
+                    bottom: 0;
+                    left: calc(50% + 60px);
+                    transform: translate(-100%);
+                    padding: 10px;
+                    background-color: $white;
+                    border-radius: 50%;
+                }
+            }
+
+            .name-email {
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                width: 100%;
+                align-items: center;
+
+                @include md {
+                    align-items: baseline;
+                }
+            }
+        }
+
+        .details {
+            flex: 2;
+
+            @include md {
+                padding-left: 30px;
+            }
+
+            @include lg {
+                padding-left: 100px;
+                flex: 3;
+            }
+
+            .title-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-bottom: 20px;
+
+                @include md {
+                    justify-content: space-between;
+                    flex-direction: row;
+                }
+
+                .btn-delete {
+                    align-self: center;
+                    @include button;
+                    background: $white;
+                    color: $danger;
+                    border: 1px solid $danger-button;
+
+                    &:hover {
+                        text-decoration: none;
+                        background: $gray-700;
+                        color: $white;
+                        border: 1px solid $gray-700;
+                    }
+                }
+            }
+
+            .courses {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                .course {
+                    position: relative;
+                    width: 100%;
+                    background-color: $white-input;
+                    box-shadow: 0px 2px 6.4px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 12px -1px rgba(19, 16, 34, 0.06);
+
+                    @include lg {
+                        width: calc(50% - 5px);
+                    }
+
+                    img {
+                        width: 100%;
+                        border-top-left-radius: 10px;
+                        border-top-right-radius: 10px;
+                    }
+
+                    .bookmark-remove {
+                        position: absolute;
+                        display: flex;
+                        flex-direction: column-reverse;
+                        bottom: 85%;
+                        right: 9%;
+                        transform: translateX(50%);
+
+                        .bookmark {
+                            background-color: #FFFFFF;
+                            padding: 7px 14px;
+                            border-radius: 50%;
+                            align-self: center;
+                            color: #565973;
+
+                            &:hover {
+                                cursor: pointer;
+                                color: #6366F1;
+                            }
+                        }
+
+                        .remove {
+                            display: none;
+                            background-color: rgb(35, 35, 35);
+                            color: #FFFFFF;
+                            padding: 8px;
+                            border-radius: 10px;
+                        }
+
+                        .bookmark:hover ~ .remove {
+                            display: block;
+                        }
+                    }
+
+                    .details {
+                        padding: 16px;
+
+                        p {
+                            margin: 0;
+                        }
+
+                        h5 {
+                            margin-top: 0;
+                            color: $theme;
+                        }
+
+                        .rating {
+                            border-top: 1px solid $gray-300;
+                            color: $gray-600;
+                            margin-top: 20px;
+                            padding-top: 20px;
+                            display: flex;
+                            gap: 30px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

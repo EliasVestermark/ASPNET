@@ -1,5 +1,5 @@
 #colour-mode {
-    background: linear-gradient(to right, $gray-900 50%, $white 50%);
+    background: linear-gradient(to right, #0B0F19 50%, #FFFFFF 50%);
     padding-top: 100px;
     padding-bottom: 80px;
     position: relative;
@@ -27,8 +27,12 @@
             padding-bottom: 80px;
             margin-left: 20px;
 
-            span {
-                color: $white;
+            .white {
+                color: #FFFFFF;
+            }
+
+            .dark {
+                color: #0B0F19;
             }
 
             @include md {

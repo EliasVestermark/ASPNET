@@ -1,0 +1,73 @@
+﻿@model ProfileSecurityModel
+@{
+    var isExternalAccount = (bool)ViewData["IsExternalAccount"]!;
+}
+
+<h1>Security</h1>
+<form method="post" asp-controller="Profile" asp-action="ChangePassword" novalidate class="basic-info">
+    <h4>Password</h4>
+    <h5 class="message @((Model.ErrorMessage != "Success!") ? "error" : "success")">@Model.ErrorMessage</h5>
+    <div class="current-password">
+        <div class="label-input">
+            <div class="label-span">
+                <label asp-for="CurrentPassword"></label>
+                <span asp-validation-for="CurrentPassword"></span>
+            </div>
+            @if (isExternalAccount)
+            {
+                <input asp-for="CurrentPassword" class="input" disabled>
+            }
+            else
+            {
+                <input asp-for="CurrentPassword" class="input">
+            }
+        </div>
+    </div>
+    <div class="group">
+        <div class="label-input">
+            <div class="label-span">
+                <label asp-for="NewPassword"></label>
+                <span asp-validation-for="NewPassword"></span>
+            </div>
+            @if (isExternalAccount)
+            {
+                <input asp-for="NewPassword" class="input" disabled>
+            }
+            else
+            {
+                <input asp-for="NewPassword" class="input">
+            }
+        </div>
+        <div class="label-input">
+            <div class="label-span">
+                <label asp-for="ConfirmPassword"></label>
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+            @if (isExternalAccount)
+            {
+                <input asp-for="ConfirmPassword" class="input" disabled>
+            }
+            else
+            {
+                <input asp-for="ConfirmPassword" class="input">
+            }
+        </div>
+    </div>
+    <div class="buttons">
+        <button type="reset" class="btn-gray">Cancel</button>
+        <button type="submit" class="btn-theme">Change password</button>
+    </div>
+</form>
+<form method="post" novalidate asp-controller="Profile" asp-action="DeleteAccount" class="delete-account">
+    <h4>Delete account</h4>
+    <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+    <div class="checkbox">
+        <input asp-for="DeleteModel!.Delete" type="checkbox">
+        <span asp-validation-for="DeleteModel!.Delete"></span>
+        <p>Yes, I want to delete my account.</p>
+    </div>
+    <button type="submit" class="btn-red">Delete</button>
+</form>
+
+@await Html.PartialAsync("_ValidationScriptPartial")
+

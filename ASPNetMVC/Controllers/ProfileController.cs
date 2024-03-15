@@ -5,7 +5,6 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ASPNetMVC.Controllers;
 
@@ -13,17 +12,76 @@ namespace ASPNetMVC.Controllers;
 public class ProfileController : Controller
 {
     private readonly UserManager<UserEntity> _userManager;
+    private readonly SignInManager<UserEntity> _signInManager;
     private readonly AddressService _addressManager;
 
-    public ProfileController(UserManager<UserEntity> userManager, AddressService addressManager)
+    public ProfileController(UserManager<UserEntity> userManager, AddressService addressManager, SignInManager<UserEntity> signInManager)
     {
         _userManager = userManager;
         _addressManager = addressManager;
+        _signInManager = signInManager;
     }
 
-    public async Task<IActionResult> Index() 
+    [HttpGet]
+    public async Task<IActionResult> Index(string message = "")
     {
-        return View(await PopulateProfileIndexAsync()); 
+        var viewModel = await PopulateProfileIndexAsync();
+        viewModel.Id = "profile-details";
+        viewModel.BasicInfo.ErrorMessage = message;
+        return View(viewModel);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Security(string message = "")
+    {
+        var viewModel = await PopulateProfileIndexAsync();
+        viewModel.Id = "profile-security";
+        viewModel.Security.ErrorMessage = message;
+        return View("Index", viewModel);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> SavedCourses()
+    {
+        var viewModel = await PopulateProfileIndexAsync();
+
+        //viewModel.SavedCoursesModel = await GetCourses();
+
+        viewModel.SavedCoursesModel = new ProfileSavedCoursesModel
+        {
+            Courses = new List<Course> {
+                new Course
+                {
+                    ImageUrl = "/images/bookmark-example.svg",
+                    Title = "Blender Character Creator v2.0 for Video Games Design",
+                    Author = "Ralph Edwards",
+                    Price = "$18.99",
+                    Duration = "160 hours",
+                    Rating = "92% (3.1K)"
+                },
+                new Course
+                {
+                    ImageUrl = "/images/bookmark-example.svg",
+                    Title = "How to go to sleep",
+                    Author = "Edwin Edwards",
+                    Price = "$299.99",
+                    Duration = "1400 hours",
+                    Rating = "66% (11.2K)"
+                },
+                new Course
+                {
+                    ImageUrl = "/images/bookmark-example.svg",
+                    Title = "Blender Character Creator v2.0 for Video Games Design",
+                    Author = "Ralph Edwards",
+                    Price = "$18.99",
+                    Duration = "160 hours",
+                    Rating = "92% (3.1K)"
+                },
+            }
+        };
+
+        viewModel.Id = "profile-saved-courses";
+        return View("Index", viewModel);
     }
 
     [HttpPost]
@@ -32,7 +90,7 @@ public class ProfileController : Controller
         if (TryValidateModel(model))
         {
             var user = await _userManager.GetUserAsync(User);
-            if (user != null) 
+            if (user != null)
             {
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
@@ -41,10 +99,11 @@ public class ProfileController : Controller
                 user.Bio = model.Bio;
 
                 await _userManager.UpdateAsync(user);
+                return RedirectToAction("Index", new { message = "Success!" });
             }
         }
 
-        return View("Index", await PopulateProfileIndexAsync());
+        return RedirectToAction("Index", new { message = "Invalid information, please try again" });
     }
 
     [HttpPost]
@@ -78,11 +137,49 @@ public class ProfileController : Controller
                     };
 
                     await _addressManager.CreateAddressAsync(address);
+                    return RedirectToAction("Index", new { message = "Success!" });
                 }
             }
         }
 
-        return View("Index", await PopulateProfileIndexAsync());
+        return RedirectToAction("Index", new { message = "Invalid information, please try again" });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ChangePassword(ProfileSecurityModel model)
+    {
+        if (TryValidateModel(model))
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+                return RedirectToAction("Security", new { message = "Success!" });
+            }
+        }
+
+        return RedirectToAction("Security", new { message = "Invalid information, please try again" });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteAccount(ProfileSecurityModel model)
+    {
+        if (model.DeleteModel!.Delete)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                await _signInManager.SignOutAsync();
+                await _userManager.DeleteAsync(user);
+
+                return RedirectToAction("SignIn", "Account");
+            }
+        }
+
+        return RedirectToAction("Security", new { message = "Invalid information, please try again" });
     }
 
     private async Task<ProfileBasicInfoModel> PopulateProfileBasicInfoAsync()
@@ -122,7 +219,7 @@ public class ProfileController : Controller
                     PostalCode = address.PostalCode,
                     City = address.City
                 };
-            } 
+            }
         }
 
         return null!;
@@ -138,5 +235,10 @@ public class ProfileController : Controller
             AddressInfo = await PopulateAddressInfoAsync(),
             IsExternalAccount = user!.IsExternalAccount
         };
+    }
+
+    private async Task<List<Course>> GetCourses()
+    {
+        return null;
     }
 }

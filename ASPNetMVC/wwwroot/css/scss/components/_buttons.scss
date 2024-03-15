@@ -67,6 +67,19 @@
     }
 }
 
+.btn-red {
+    @include button;
+    background: $danger;
+    color: $white;
+    border: none;
+
+    &:hover {
+        text-decoration: none;
+        background: $gray-700;
+        color: $white;
+    }
+}
+
 .btn-switch {
     display: flex;
     align-items: center;
@@ -81,26 +94,26 @@
         display: inline-block;
         width: 46px;
         height: 25px;
-    
-        & input { 
+
+        & input {
             opacity: 0;
             width: 0;
             height: 0;
-    
+
             &:checked + .slider {
                 background-color: $theme;
             }
-            
+
             &:focus + .slider {
                 box-shadow: 0 0 1px $theme;
             }
-              
-             &:checked + .slider:before {
+
+            &:checked + .slider:before {
                 transform: translateX(20px);
-                background-color: $white;
+                background-color: #FFFFFF;
             }
         }
-    
+
         .slider {
             position: absolute;
             cursor: pointer;
@@ -108,9 +121,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: $gray-700;
+            background-color: #565973;
             transition: .4s;
-    
+
             &:before {
                 position: absolute;
                 content: "";
@@ -118,18 +131,17 @@
                 width: 20px;
                 left: 3px;
                 bottom: 2.7px;
-                background-color: $white;
+                background-color: #FFFFFF;
                 transition: .4s;
-              }
-    
+            }
+
             &.round {
                 border-radius: 34px;
             }
-            
+
             &.round:before {
                 border-radius: 50%;
             }
-    
         }
     }
 }

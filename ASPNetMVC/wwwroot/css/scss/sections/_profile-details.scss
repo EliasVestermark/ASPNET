@@ -65,7 +65,7 @@
 
             label {
                 font-weight: 600;
-                color: black;
+                color: $gray-900;
             }
 
             h1 {
@@ -82,6 +82,22 @@
 
                 @include md {
                     text-align: left;
+                }
+            }
+
+            .message {
+                text-align: center;
+
+                @include md {
+                    text-align: left;
+                }
+
+                &.error {
+                    color: $danger;
+                }
+
+                &.success {
+                    color: #048316;
                 }
             }
 
@@ -116,10 +132,15 @@
             .input {
                 display: block;
                 width: 100%;
-                border: 1px solid $gray-400;
+                border: 1px solid $gray-300;
                 border-radius: 8px;
                 outline-color: $theme;
                 padding: 12px 10px;
+                background-color: $white-input;
+
+                &:disabled {
+                    background-color: $gray-300;
+                }
 
                 &.input-validation-error {
                     color: $danger;

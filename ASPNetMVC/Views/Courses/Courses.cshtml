@@ -1,0 +1,60 @@
+﻿@model CoursesModel
+
+<section id="courses">
+    <div class="container">
+        <div class="navigation">
+            <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i> Home <i class="fa-solid fa-angles-right"></i></a>
+            <a href="">Courses</a>
+        </div>
+        <div class="title">
+            <h1>Courses</h1>
+            <div class="input-fields">
+                <select class="input">
+                    <option value="All categories">All categories</option>
+                    <option value="Option1">Option1</option>
+                    <option value="Option2">Option2</option>
+                    <option value="Option3">Option3</option>
+                </select>
+                <input class="input" type="text" placeholder="Search courses">
+            </div>
+        </div>
+        <div class="courses">
+
+            @foreach (var course in Model.Courses)
+            {
+                <div class="course">
+                    <img src="@course.ImageUrl" alt="course image">
+                    <div class="bookmark-remove">
+                        <p class="bookmark"><i class="fa-solid fa-bookmark"></i></p>
+                        <p class="remove">Remove</p>
+                    </div>
+                    <div class="details">
+                        <h4>@course.Title</h4>
+                        <p class="author">By @course.Author</p>
+                        <h5>@course.Price</h5>
+                        <div class="rating">
+                            <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
+                            <p><i class="fa-regular fa-thumbs-up"></i> @course.Rating</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="buttons">
+            <button><i class="fa-solid fa-angle-left"></i></button>
+            <button>1</button>
+            <button class="current">2</button>
+            <button>3</button>
+            <button>4</button>
+            <button><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+        <div class="get-started">
+            <div class="left">
+                <h3>Ready to get started with us?</h3>
+                <h1>Take Your <span>Skills</span> to the Next Level</h1>
+                <a class="btn-theme-s">Work with us</a>
+            </div>
+            <img src="~/images/person-with-laptop.svg" alt="person with laptop">
+        </div>
+    </div>
+</section>

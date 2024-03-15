@@ -2,12 +2,9 @@
     background: $gray-100;
     padding: 0;
 
-    @include md {
-        padding:80px 0;
-    }
-
     .container {
         display: flex;
+        background: $gray-100-download;
 
         .mobile-image {
             width: 50%;
@@ -16,6 +13,7 @@
 
             @include md {
                 display: block;
+                padding: 80px 0;
             }
 
             @include lg {
@@ -30,7 +28,7 @@
             @include md {
                 text-align: left;
             }
-            
+
             @include xl {
                 margin-left: 120px;
                 margin-right: 110px;
@@ -64,7 +62,7 @@
                     color: $gray-600;
                     margin-bottom: 0;
                 }
-    
+
                 i {
                     color: $warning;
                     font-size: 12px;

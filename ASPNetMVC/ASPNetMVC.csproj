@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\scss\core\" />
-    <Folder Include="wwwroot\css\scss\components\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

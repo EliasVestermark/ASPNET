@@ -1,0 +1,110 @@
+﻿@model SingleCourseModel
+
+<section id="single-course">
+    <div class="top">
+        <img class="background" src="~/images/single-course-showcase.svg" alt="">
+        <div class="container">
+
+            <div class="navigation">
+                <a class="home" href=""><i class="fa-solid fa-house"></i> Home <i class="fa-solid fa-angles-right"></i></a>
+                <a href="">Courses <i class="fa-solid fa-angles-right"></i></a>
+                <a href="">@Model.CourseTitle</a>
+            </div>
+            <div class="tags">
+
+                @foreach (var tag in Model.Tags)
+                {
+                    <p class="@tag.ToLower()">@tag</p>
+                }
+                @* <p class="best-seller">Best Seller</p>
+                <p class="digital">Digital</p> *@
+            </div>
+            <div class="title">
+                <h1>@Model.CourseTitle</h1>
+                <h5>@Model.Subtitle</h5>
+            </div>
+            <div class="rating">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <p>@Model.Reviews</p>
+                </div>
+                <p class="reviews"><i class="fa-regular fa-thumbs-up"></i> @Model.Likes</p>
+                <p class="time"><i class="fa-regular fa-clock"></i> @Model.Duration</p>
+            </div>
+            <div class="author-image">
+                <img class="author-logo" src="@Model.AuthorIcon" alt="Author Face">
+                <div class="author">
+                    <p><span>Created by</span></p>
+                    <p>@Model.Author</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="description">
+            <div class="left">
+                <h1>Course Description</h1>
+                <p>@Model.Description</p>
+                <div class="checklist">
+                    <h2>What you'll learn</h2>
+
+                    @foreach (var item in Model.WhatYouLearn)
+                    {
+                        <div class="item"><i class="fa-regular fa-circle-check"></i> <p> @item</p></div>
+                    }
+
+                </div>
+            </div>
+            <div class="right">
+                <h3>This course includes</h3>
+                <div class="includes">
+                     
+                    @foreach (var item in Model.Includes)
+                    {
+                        <p><i class="icon fa-solid fa-desktop"></i> @item</p>
+                    }
+
+                </div>
+                <div class="price">
+                    <h2 class="new-price">@Model.NewPrice</h2>
+                    <h4 class="old-price">@Model.OldPrice</h4>
+                </div>
+                <a href="" class="btn-theme-s">Join course</a>
+            </div>
+        </div>
+        <div class="details">
+            <h1>Program Details</h1>
+            <div class="list">
+                <div class="line"></div>
+
+                @{ int number = 1; }
+
+                @foreach (var item in Model.ProgramDetails)
+                {
+                    <div class="item">
+                        <h3>@number</h3>
+                        <div class="info">
+                            <h3>@item.DetailTitle</h3>
+                            <p>@item.DetailDescription</p>
+                        </div>
+                    </div>
+
+                    { number++; }
+                }
+            </div>
+        </div>
+        <div class="author-about">
+            <img class="pattern" src="~/images/pattern.svg" alt="">
+            <img class="author-image" src="@Model.AuthorImage" alt="Author Face">
+            <div class="about">
+                <p>Learn from the best</p>
+                <h2>@Model.Author</h2>
+                <p>@Model.AuthorDescription</p>
+                <div class="buttons">
+                    <a href="" class="btn-red"><i class="fa-brands fa-youtube"></i> @Model.Subscribers</a>
+                    <a href="" class="btn-theme"><i class="fa-brands fa-square-facebook"></i> @Model.Followers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
