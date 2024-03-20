@@ -24,6 +24,9 @@
             {
                 <div class="course">
                     <img src="@course.ImageUrl" alt="course image">
+                    <div class="tags">
+                        <p class="@course.BestSeller!.ToLower()">@course.BestSeller</p>
+                    </div>
                     <div class="bookmark-remove">
                         <p class="bookmark"><i class="fa-solid fa-bookmark"></i></p>
                         <p class="remove">Remove</p>
@@ -31,10 +34,10 @@
                     <div class="details">
                         <h4>@course.Title</h4>
                         <p class="author">By @course.Author</p>
-                        <h5>@course.Price</h5>
+                        <h5 class="@course.Sale">@course.NewPrice <span>@course.OldPrice</span></h5>
                         <div class="rating">
                             <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
-                            <p><i class="fa-regular fa-thumbs-up"></i> @course.Rating</p>
+                            <p><i class="fa-regular fa-thumbs-up"></i> @course.RatingPercent @course.RatingLikes</p>
                         </div>
                     </div>
                 </div>

@@ -111,6 +111,28 @@
                         border-top-right-radius: 10px;
                     }
 
+                    .tags {
+                        display: flex;
+                        gap: 20px;
+                        position: absolute;
+                        top: 15px;
+                        left: 15px;
+
+                        .best-seller {
+                            color: #FFFFFF;
+                            background-color: $success;
+                            padding: 0 14px;
+                            border-radius: 6px;
+                        }
+
+                        .digital {
+                            color: #0B0F19;
+                            background-color: #FFFFFF;
+                            padding: 0 14px;
+                            border-radius: 6px;
+                        }
+                    }
+
                     .bookmark-remove {
                         position: absolute;
                         display: flex;
@@ -147,6 +169,8 @@
 
                     .details {
                         padding: 16px;
+                        display: flex;
+                        flex-direction: column;
 
                         p {
                             margin: 0;
@@ -155,6 +179,17 @@
                         h5 {
                             margin-top: 0;
                             color: $theme;
+
+                            &.sale {
+                                color: $danger;
+                            }
+
+                            span {
+                                margin-left: 10px;
+                                color: #B4B7C9;
+                                font-weight: 400;
+                                text-decoration: line-through;
+                            }
                         }
 
                         .rating {

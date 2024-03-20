@@ -1878,6 +1878,25 @@ footer .container .social-media {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+#profile-saved-courses .container .details .courses .course .tags {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+#profile-saved-courses .container .details .courses .course .tags .best-seller {
+  color: #FFFFFF;
+  background-color: #22C55E;
+  padding: 0 14px;
+  border-radius: 6px;
+}
+#profile-saved-courses .container .details .courses .course .tags .digital {
+  color: #0B0F19;
+  background-color: #FFFFFF;
+  padding: 0 14px;
+  border-radius: 6px;
+}
 #profile-saved-courses .container .details .courses .course .bookmark-remove {
   position: absolute;
   display: flex;
@@ -1909,6 +1928,8 @@ footer .container .social-media {
 }
 #profile-saved-courses .container .details .courses .course .details {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
 }
 #profile-saved-courses .container .details .courses .course .details p {
   margin: 0;
@@ -1916,6 +1937,15 @@ footer .container .social-media {
 #profile-saved-courses .container .details .courses .course .details h5 {
   margin-top: 0;
   color: #6366F1;
+}
+#profile-saved-courses .container .details .courses .course .details h5.sale {
+  color: #EF4444;
+}
+#profile-saved-courses .container .details .courses .course .details h5 span {
+  margin-left: 10px;
+  color: #B4B7C9;
+  font-weight: 400;
+  text-decoration: line-through;
 }
 #profile-saved-courses .container .details .courses .course .details .rating {
   border-top: 1px solid #E2E5F1;
@@ -2122,6 +2152,25 @@ footer .container .social-media {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+#courses .container .courses .course .tags {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+#courses .container .courses .course .tags .best-seller {
+  color: #FFFFFF;
+  background-color: #22C55E;
+  padding: 0 14px;
+  border-radius: 6px;
+}
+#courses .container .courses .course .tags .digital {
+  color: #0B0F19;
+  background-color: #FFFFFF;
+  padding: 0 14px;
+  border-radius: 6px;
+}
 #courses .container .courses .course .bookmark-remove {
   position: absolute;
   display: flex;
@@ -2158,6 +2207,15 @@ footer .container .social-media {
 #courses .container .courses .course .details h5 {
   margin-top: 0;
   color: #6366F1;
+}
+#courses .container .courses .course .details h5.sale {
+  color: #EF4444;
+}
+#courses .container .courses .course .details h5 span {
+  margin-left: 10px;
+  color: #B4B7C9;
+  font-weight: 400;
+  text-decoration: line-through;
 }
 #courses .container .courses .course .details .rating {
   border-top: 1px solid #E2E5F1;

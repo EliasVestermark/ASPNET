@@ -18,28 +18,40 @@ public class CoursesController : Controller
                 {
                     ImageUrl = "/images/bookmark-example.svg",
                     Title = "Blender Character Creator v2.0 for Video Games Design",
+                    BestSeller = "",
                     Author = "Ralph Edwards",
-                    Price = "$18.99",
+                    NewPrice = "$18.99",
+                    OldPrice = "$27.99",
+                    Sale = "sale",
                     Duration = "160 hours",
-                    Rating = "92% (3.1K)"
+                    RatingPercent = "92%",
+                    RatingLikes = "(3.1K)"
                 },
                 new Course
                 {
                     ImageUrl = "/images/bookmark-example.svg",
                     Title = "How to go to sleep",
+                    BestSeller = "Best-Seller",
                     Author = "Edwin Edwards",
-                    Price = "$299.99",
-                    Duration = "1400 hours",
-                    Rating = "66% (11.2K)"
+                    NewPrice = "$18.99",
+                    OldPrice = "",
+                    Sale = "",
+                    Duration = "160 hours",
+                    RatingPercent = "92%",
+                    RatingLikes = "(3.1K)"
                 },
                 new Course
                 {
                     ImageUrl = "/images/bookmark-example.svg",
                     Title = "Blender Character Creator v2.0 for Video Games Design",
+                    BestSeller = "Best-Seller",
                     Author = "Ralph Edwards",
-                    Price = "$18.99",
+                    NewPrice = "$18.99",
+                    OldPrice = "$27.99",
+                    Sale = "sale",
                     Duration = "160 hours",
-                    Rating = "92% (3.1K)"
+                    RatingPercent = "92%",
+                    RatingLikes = "(3.1K)"
                 },
             }
         };
