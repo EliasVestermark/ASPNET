@@ -2,6 +2,7 @@
 using ASPNetAPI.Models;
 using ASPNetAPI.Services;
 using Infrastructure.Contexts;
+using Infrastructure.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -68,11 +69,28 @@ public class CourseController(CourseService courseService, AppDbContext context)
         return NotFound();
     }
 
-    //[HttpPut("{id}")]
-    //public async Task<IActionResult> UpdateOne(int id)
-    //{
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateOne(int id, CourseModel course)
+    {
+        var result = await _courseService.GetOneCourseEntity(id);
 
-    //}
+        if (result != null)
+        {
+            try
+            {
+                var updatedCourse = await _courseService.UpdateCourse(course, result);
+                await _context.SaveChangesAsync();
+
+                return Ok(updatedCourse);
+            }
+            catch
+            {
+                return Problem("Unable to update course");
+            }
+        }
+
+        return NotFound();
+    }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteOne(int id)

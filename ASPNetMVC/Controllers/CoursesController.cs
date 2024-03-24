@@ -1,6 +1,9 @@
 ﻿using ASPNetMVC.Models.Models;
+using ASPNetMVC.Models.Sections;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace ASPNetMVC.Controllers;
 
@@ -9,52 +12,59 @@ public class CoursesController : Controller
 {
     [Route("/courses")]
     [HttpGet]
-    public IActionResult Courses()
+    public async Task<IActionResult> Courses()
     {
-        var viewModel = new CoursesModel
-        {
-            Courses = new List<Course> {
-                new Course
-                {
-                    ImageUrl = "/images/bookmark-example.svg",
-                    Title = "Blender Character Creator v2.0 for Video Games Design",
-                    BestSeller = "",
-                    Author = "Ralph Edwards",
-                    NewPrice = "$18.99",
-                    OldPrice = "$27.99",
-                    Sale = "sale",
-                    Duration = "160 hours",
-                    RatingPercent = "92%",
-                    RatingLikes = "(3.1K)"
-                },
-                new Course
-                {
-                    ImageUrl = "/images/bookmark-example.svg",
-                    Title = "How to go to sleep",
-                    BestSeller = "Best-Seller",
-                    Author = "Edwin Edwards",
-                    NewPrice = "$18.99",
-                    OldPrice = "",
-                    Sale = "",
-                    Duration = "160 hours",
-                    RatingPercent = "92%",
-                    RatingLikes = "(3.1K)"
-                },
-                new Course
-                {
-                    ImageUrl = "/images/bookmark-example.svg",
-                    Title = "Blender Character Creator v2.0 for Video Games Design",
-                    BestSeller = "Best-Seller",
-                    Author = "Ralph Edwards",
-                    NewPrice = "$18.99",
-                    OldPrice = "$27.99",
-                    Sale = "sale",
-                    Duration = "160 hours",
-                    RatingPercent = "92%",
-                    RatingLikes = "(3.1K)"
-                },
-            }
-        };
+        using var http = new HttpClient();
+        var response = await http.GetAsync("https://localhost:7269/api/course?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
+        var json = await response.Content.ReadAsStringAsync();
+        var data = JsonConvert.DeserializeObject<IEnumerable<SingleCourseModel>>(json);
+
+        var viewModel = data;
+
+        //var viewModel = new CoursesModel
+        //{
+        //    Courses = new List<Course> {
+        //        new Course
+        //        {
+        //            ImageUrl = "/images/bookmark-example.svg",
+        //            Title = "Blender Character Creator v2.0 for Video Games Design",
+        //            BestSeller = "",
+        //            Author = "Ralph Edwards",
+        //            NewPrice = "$18.99",
+        //            OldPrice = "$27.99",
+        //            Sale = "sale",
+        //            Duration = "160 hours",
+        //            RatingPercent = "92%",
+        //            RatingLikes = "(3.1K)"
+        //        },
+        //        new Course
+        //        {
+        //            ImageUrl = "/images/bookmark-example.svg",
+        //            Title = "How to go to sleep",
+        //            BestSeller = "Best-Seller",
+        //            Author = "Edwin Edwards",
+        //            NewPrice = "$18.99",
+        //            OldPrice = "",
+        //            Sale = "",
+        //            Duration = "160 hours",
+        //            RatingPercent = "92%",
+        //            RatingLikes = "(3.1K)"
+        //        },
+        //        new Course
+        //        {
+        //            ImageUrl = "/images/bookmark-example.svg",
+        //            Title = "Blender Character Creator v2.0 for Video Games Design",
+        //            BestSeller = "Best-Seller",
+        //            Author = "Ralph Edwards",
+        //            NewPrice = "$18.99",
+        //            OldPrice = "$27.99",
+        //            Sale = "sale",
+        //            Duration = "160 hours",
+        //            RatingPercent = "92%",
+        //            RatingLikes = "(3.1K)"
+        //        },
+        //    }
+        //};
 
         return View(viewModel);
     }

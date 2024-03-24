@@ -109,6 +109,45 @@ public class CourseService(AppDbContext context)
         return null!;
     }
 
+    public async Task<CourseModel> UpdateCourse(CourseModel model, CourseEntity courseEntity)
+    {
+        try
+        {
+            var tagList = await CreateTag(model);
+            var whatYouLearnList = await CreateWhatYouLearn(model);
+            var includesList = await CreateIncludes(model);
+            var programDetailsList = await CreateProgramDetails(model);
+
+            courseEntity.CourseTitle = model.CourseTitle;
+            courseEntity.Subtitle = model.Subtitle;
+            courseEntity.Reviews = model.Reviews;
+            courseEntity.Likes = model.Likes;
+            courseEntity.Duration = model.Duration;
+            courseEntity.Author = model.Author;
+            courseEntity.Description = model.Description;
+            courseEntity.NewPrice = model.NewPrice;
+            courseEntity.OldPrice = model.OldPrice;
+            courseEntity.AuthorDescription = model.AuthorDescription;
+            courseEntity.Subscribers = model.Subscribers;
+            courseEntity.Followers = model.Followers;
+            courseEntity.AuthorIcon = model.AuthorIcon;
+            courseEntity.AuthorImage = model.AuthorImage;
+            courseEntity.Tags = tagList.ToList();
+            courseEntity.WhatYouLearns = whatYouLearnList.ToList();
+            courseEntity.Includes = includesList.ToList();
+            courseEntity.ProgramDetails = programDetailsList.ToList();
+
+            _context.Update(courseEntity);
+            await _context.SaveChangesAsync();
+
+            return PopulateCourseModel(courseEntity!);
+        }
+        catch
+        {
+            return null!;
+        }
+    }
+
     public CourseModel PopulateCourseModel(CourseEntity course)
     {
         var tags = new List<string>();
