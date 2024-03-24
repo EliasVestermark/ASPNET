@@ -6,29 +6,47 @@
             <h1>@Model.Title</h1>
             <img src="@Model.Image.ImageUrl" alt="@Model.Image.Alt">
         </div>
-        <div class="sign-up-for-newsletter">
-            <h3>@Model.Text</h3>
-            <div class="checkboxes">
-
-                @foreach(var item in Model.Checkboxes)
-                {
+        <form novalidate method="post" asp-action="Subscribe" asp-controller="Home">
+            <div class="sign-up-for-newsletter">
+                <h3>@Model.Text</h3>
+                <div class="checkboxes">
                     <div class="checkbox">
-                        <input type="checkbox" class="box" />
-                        <p>@item</p>
+                        <input asp-for="@Model.SubscribeModel.DailyNewsletter" type="checkbox" class="box" />
+                        <p>Daily Newsletter</p>
                     </div>
-                }
-
+                    <div class="checkbox">
+                        <input asp-for="@Model.SubscribeModel.AdvertisingUpdates" type="checkbox" class="box" />
+                        <p>Advertising Updates</p>
+                    </div>
+                    <div class="checkbox">
+                        <input asp-for="@Model.SubscribeModel.WeekInReview" type="checkbox" class="box" />
+                        <p>Week in Review</p>
+                    </div>
+                    <div class="checkbox">
+                        <input asp-for="@Model.SubscribeModel.EventUpdates" type="checkbox" class="box" />
+                        <p>Event Updates</p>
+                    </div>
+                    <div class="checkbox">
+                        <input asp-for="@Model.SubscribeModel.StartupsWeekly" type="checkbox" class="box" />
+                        <p>Startups Weekly</p>
+                    </div>
+                    <div class="checkbox">
+                        <input asp-for="@Model.SubscribeModel.Podcasts" type="checkbox" class="box" />
+                        <p>Podcasts</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="sign-up-form">
-            <span asp-validation-for="@Model.Email" class="error"></span>
-            <form class="email-and-button">
-                <input asp-for="@Model.Email" class="input" placeholder="Your Email">
-                <i class="fa-regular fa-envelope"></i>
-                <a class="btn-theme" href="#">Subscribe *</a>
-            </form>
-            <p><span>*</span> Yes, I agree to the <span class="terms">terms</span> and <span class="terms">privacy policy.</span></p>
-        </div>
+            <div class="sign-up-form">
+                <span asp-validation-for="@Model.SubscribeModel.Email" class="error"></span>
+                <div class="email-and-button">
+                    <input asp-for="@Model.SubscribeModel.Email" class="input" placeholder="Your Email">
+                    <i class="fa-regular fa-envelope"></i>
+                    <button type="submit" class="btn-theme">Subscribe *</button>
+                </div>
+                <p><span>*</span> Yes, I agree to the <span class="terms">terms</span> and <span class="terms">privacy policy.</span></p>
+                <p class="message @(ViewData["Subscribe"]!.ToString() == "Thank you for subscribing" ? "success" : "error")">@ViewData["Subscribe"]</p>
+            </div>
+        </form> 
     </div>
 </section>
 

@@ -19,4 +19,5 @@ public class UserEntity : IdentityUser
 
     public int? AddressId { get; set; }
     public AddressEntity? Address { get; set; }
+    public ICollection<CourseEntity>? Courses { get; set; }
 }

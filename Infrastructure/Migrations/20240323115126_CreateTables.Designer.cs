@@ -4,6 +4,7 @@ using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240323115126_CreateTables")]
+    partial class CreateTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +38,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("IncludesId");
 
                     b.ToTable("CourseIncludes", (string)null);
-                });
-
-            modelBuilder.Entity("CourseEntityLabelEntity", b =>
-                {
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LabelsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CoursesId", "LabelsId");
-
-                    b.HasIndex("LabelsId");
-
-                    b.ToTable("CourseLabels", (string)null);
                 });
 
             modelBuilder.Entity("CourseEntityProgramDetailsEntity", b =>
@@ -252,23 +240,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Includes");
-                });
-
-            modelBuilder.Entity("Infrastructure.Entities.LabelEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Labels");
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.ProgramDetailsEntity", b =>
@@ -592,21 +563,6 @@ namespace Infrastructure.Migrations
                     b.HasOne("Infrastructure.Entities.IncludesEntity", null)
                         .WithMany()
                         .HasForeignKey("IncludesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CourseEntityLabelEntity", b =>
-                {
-                    b.HasOne("Infrastructure.Entities.CourseEntity", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Infrastructure.Entities.LabelEntity", null)
-                        .WithMany()
-                        .HasForeignKey("LabelsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
