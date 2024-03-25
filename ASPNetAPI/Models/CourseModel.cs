@@ -2,6 +2,7 @@
 
 public class CourseModel
 {
+    public int Id { get; set; }
     public string CourseTitle { get; set; } = null!;
     public List<string> Tags { get; set; } = [];
     public string Subtitle { get; set; } = null!;

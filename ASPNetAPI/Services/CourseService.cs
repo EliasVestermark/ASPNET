@@ -181,6 +181,7 @@ public class CourseService(AppDbContext context)
 
         var courseModel = new CourseModel
         {
+            Id = course.Id,
             CourseTitle = course.CourseTitle,
             Tags = tags,
             Subtitle = course.Subtitle,

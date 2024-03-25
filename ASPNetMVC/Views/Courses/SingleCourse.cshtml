@@ -6,8 +6,8 @@
         <div class="container">
 
             <div class="navigation">
-                <a class="home" href=""><i class="fa-solid fa-house"></i> Home <i class="fa-solid fa-angles-right"></i></a>
-                <a href="">Courses <i class="fa-solid fa-angles-right"></i></a>
+                <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i> Home <i class="fa-solid fa-angles-right"></i></a>
+                <a asp-controller="Courses" asp-action="courses">Courses <i class="fa-solid fa-angles-right"></i></a>
                 <a href="">@Model.CourseTitle</a>
             </div>
             <div class="tags">
@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     <p>@Model.Reviews</p>
                 </div>
-                <p class="reviews"><i class="fa-regular fa-thumbs-up"></i> @Model.Likes</p>
+                <p class="reviews"><i class="fa-regular fa-thumbs-up"></i> @Model.Likes likes</p>
                 <p class="time"><i class="fa-regular fa-clock"></i> @Model.Duration</p>
             </div>
             <div class="author-image">
@@ -60,7 +60,7 @@
                      
                     @foreach (var item in Model.Includes)
                     {
-                        <p><i class="icon fa-solid fa-desktop"></i> @item</p>
+                        <p><i class="fa-regular fa-circle-check"></i> @item</p>
                     }
 
                 </div>

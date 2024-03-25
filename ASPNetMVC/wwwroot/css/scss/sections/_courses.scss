@@ -62,6 +62,11 @@
                     width: calc(33% - 11px);
                 }
 
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: none;
+                }
+
                 img {
                     width: 100%;
                     border-top-left-radius: 10px;
@@ -98,6 +103,10 @@
                     right: 9%;
                     transform: translateX(50%);
 
+                    p {
+                        color: $gray-500;
+                    }
+
                     .bookmark {
                         background-color: $white;
                         padding: 7px 14px;
@@ -127,6 +136,7 @@
 
                     p {
                         margin: 0;
+                        color: $gray-600;
                     }
 
                     h5 {
