@@ -17,10 +17,11 @@
         public string Followers { get; set; } = null!;
         public string AuthorIcon { get; set; } = null!;
         public string AuthorImage { get; set; } = null!;
+        public string BackgroundImage { get; set; } = null!;
+        public string LikesPercent { get; set; } = null!;
 
         public ICollection<UserEntity>? Users { get; set; }
         public ICollection<TagEntity>? Tags { get; set; } = null!;
-        public ICollection<LabelEntity>? Labels { get; set; } = null!;
         public ICollection<WhatYouLearnEntity> WhatYouLearns { get; set; } = null!;
         public ICollection<IncludesEntity> Includes { get; set; } = null!;
         public ICollection<ProgramDetailsEntity> ProgramDetails { get; set; } = null!;

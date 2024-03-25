@@ -34,6 +34,8 @@ public class CourseService(AppDbContext context)
                 Followers = model.Followers,
                 AuthorIcon = model.AuthorIcon,
                 AuthorImage = model.AuthorImage,
+                BackgroundImage = model.BackgroundImage,
+                LikesPercent = model.LikesPercent,
                 Tags = tagList.ToList(),
                 WhatYouLearns = whatYouLearnList.ToList(),
                 Includes = includesList.ToList(),
@@ -132,6 +134,8 @@ public class CourseService(AppDbContext context)
             courseEntity.Followers = model.Followers;
             courseEntity.AuthorIcon = model.AuthorIcon;
             courseEntity.AuthorImage = model.AuthorImage;
+            courseEntity.BackgroundImage = model.BackgroundImage;
+            courseEntity.LikesPercent = model.LikesPercent;
             courseEntity.Tags = tagList.ToList();
             courseEntity.WhatYouLearns = whatYouLearnList.ToList();
             courseEntity.Includes = includesList.ToList();
@@ -194,7 +198,9 @@ public class CourseService(AppDbContext context)
             Subscribers = course.Subscribers,
             Followers = course.Followers,
             AuthorIcon = course.AuthorIcon,
-            AuthorImage = course.AuthorImage
+            AuthorImage = course.AuthorImage,
+            BackgroundImage = course.BackgroundImage,
+            LikesPercent = course.LikesPercent
         };
 
         return courseModel;

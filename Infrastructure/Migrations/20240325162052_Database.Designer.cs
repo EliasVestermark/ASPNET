@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240323141608_AddedLabels")]
-    partial class AddedLabels
+    [Migration("20240325162052_Database")]
+    partial class Database
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,21 +38,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("IncludesId");
 
                     b.ToTable("CourseIncludes", (string)null);
-                });
-
-            modelBuilder.Entity("CourseEntityLabelEntity", b =>
-                {
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LabelsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CoursesId", "LabelsId");
-
-                    b.HasIndex("LabelsId");
-
-                    b.ToTable("CourseLabels", (string)null);
                 });
 
             modelBuilder.Entity("CourseEntityProgramDetailsEntity", b =>
@@ -195,6 +180,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BackgroundImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CourseTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -212,6 +201,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Likes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LikesPercent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -255,23 +248,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Includes");
-                });
-
-            modelBuilder.Entity("Infrastructure.Entities.LabelEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Labels");
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.ProgramDetailsEntity", b =>
@@ -595,21 +571,6 @@ namespace Infrastructure.Migrations
                     b.HasOne("Infrastructure.Entities.IncludesEntity", null)
                         .WithMany()
                         .HasForeignKey("IncludesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CourseEntityLabelEntity", b =>
-                {
-                    b.HasOne("Infrastructure.Entities.CourseEntity", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Infrastructure.Entities.LabelEntity", null)
-                        .WithMany()
-                        .HasForeignKey("LabelsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -20,28 +20,64 @@
         </div>
         <div class="courses">
 
-            @foreach (var course in Model.Courses)
+            @for (int i = 0; i < 9; i++)
             {
+                var course = Model.Courses.FirstOrDefault();
+
                 <div class="course">
-                    <img src="@course.ImageUrl" alt="course image">
+                    <img src="@course!.BackgroundImage" alt="course image">
                     <div class="tags">
-                        <p class="@course.BestSeller!.ToLower()">@course.BestSeller</p>
+
+                        @foreach (var tag in course!.Tags)
+                        {
+                            <p class="@tag.ToLower()">@tag</p>
+                        }
+
                     </div>
                     <div class="bookmark-remove">
                         <p class="bookmark"><i class="fa-solid fa-bookmark"></i></p>
                         <p class="remove">Remove</p>
                     </div>
                     <div class="details">
-                        <h4>@course.Title</h4>
+                        <h4>@course.CourseTitle</h4>
                         <p class="author">By @course.Author</p>
-                        <h5 class="@course.Sale">@course.NewPrice <span>@course.OldPrice</span></h5>
+                        <h5 class="@(string.IsNullOrEmpty(course.OldPrice) ? "" : "sale")">@course.NewPrice <span>@course.OldPrice</span></h5>
                         <div class="rating">
                             <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
-                            <p><i class="fa-regular fa-thumbs-up"></i> @course.RatingPercent @course.RatingLikes</p>
+                            <p><i class="fa-regular fa-thumbs-up"></i> @course.LikesPercent (@course.Likes)</p>
                         </div>
                     </div>
                 </div>
             }
+
+            @* @foreach (var course in Model.Courses)
+            {
+                <div class="course">
+                    <img src="~/images/bookmark-example.svg" alt="course image">
+                    <div class="tags">
+
+                        @foreach (var tag in course.Tags)
+                        {
+                            <p class="@tag.ToLower()">@tag</p>
+                        }
+
+                    </div>
+                    <div class="bookmark-remove">
+                        <p class="bookmark"><i class="fa-solid fa-bookmark"></i></p>
+                        <p class="remove">Remove</p>
+                    </div>
+                    <div class="details">
+                        <h4>@course.CourseTitle</h4>
+                        <p class="author">By @course.Author</p>
+                        <h5 class="@(string.IsNullOrEmpty(course.OldPrice) ? "" : "sale")">@course.NewPrice <span>@course.OldPrice</span></h5>
+                        <div class="rating">
+                            <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
+                            <p><i class="fa-regular fa-thumbs-up"></i> @course.Reviews</p>
+                        </div>
+                    </div>
+                </div>
+            } *@
+
         </div>
         <div class="buttons">
             <button><i class="fa-solid fa-angle-left"></i></button>

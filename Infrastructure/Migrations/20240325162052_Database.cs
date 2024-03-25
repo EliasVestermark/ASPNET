@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateTables : Migration
+    public partial class Database : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,7 +76,9 @@ namespace Infrastructure.Migrations
                     Subscribers = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Followers = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AuthorIcon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AuthorImage = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AuthorImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BackgroundImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LikesPercent = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

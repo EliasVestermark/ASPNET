@@ -14,7 +14,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<IncludesEntity> Includes { get; set; }
     public DbSet<ProgramDetailsEntity> ProgramDetails { get; set; }
     public DbSet<TagEntity> Tags { get; set; }
-    public DbSet<LabelEntity> Labels { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,9 +44,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .WithMany(c => c.Tags)
             .UsingEntity(j => j.ToTable("CourseTags"));
 
-        modelBuilder.Entity<LabelEntity>()
-            .HasMany(l => l.Courses)
-            .WithMany(c => c.Labels)
-            .UsingEntity(j => j.ToTable("CourseLabels"));
+        //modelBuilder.Entity<LabelEntity>()
+        //    .HasMany(l => l.Courses)
+        //    .WithMany(c => c.Labels)
+        //    .UsingEntity(j => j.ToTable("CourseLabels"));
     }
 }

@@ -19,52 +19,7 @@ public class CoursesController : Controller
         var json = await response.Content.ReadAsStringAsync();
         var data = JsonConvert.DeserializeObject<IEnumerable<SingleCourseModel>>(json);
 
-        var viewModel = data;
-
-        //var viewModel = new CoursesModel
-        //{
-        //    Courses = new List<Course> {
-        //        new Course
-        //        {
-        //            ImageUrl = "/images/bookmark-example.svg",
-        //            Title = "Blender Character Creator v2.0 for Video Games Design",
-        //            BestSeller = "",
-        //            Author = "Ralph Edwards",
-        //            NewPrice = "$18.99",
-        //            OldPrice = "$27.99",
-        //            Sale = "sale",
-        //            Duration = "160 hours",
-        //            RatingPercent = "92%",
-        //            RatingLikes = "(3.1K)"
-        //        },
-        //        new Course
-        //        {
-        //            ImageUrl = "/images/bookmark-example.svg",
-        //            Title = "How to go to sleep",
-        //            BestSeller = "Best-Seller",
-        //            Author = "Edwin Edwards",
-        //            NewPrice = "$18.99",
-        //            OldPrice = "",
-        //            Sale = "",
-        //            Duration = "160 hours",
-        //            RatingPercent = "92%",
-        //            RatingLikes = "(3.1K)"
-        //        },
-        //        new Course
-        //        {
-        //            ImageUrl = "/images/bookmark-example.svg",
-        //            Title = "Blender Character Creator v2.0 for Video Games Design",
-        //            BestSeller = "Best-Seller",
-        //            Author = "Ralph Edwards",
-        //            NewPrice = "$18.99",
-        //            OldPrice = "$27.99",
-        //            Sale = "sale",
-        //            Duration = "160 hours",
-        //            RatingPercent = "92%",
-        //            RatingLikes = "(3.1K)"
-        //        },
-        //    }
-        //};
+        var viewModel = new CoursesModel { Courses = data! };
 
         return View(viewModel);
     }

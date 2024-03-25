@@ -20,4 +20,6 @@ public class SingleCourseModel
     public string Followers { get; set; } = null!;
     public string AuthorIcon { get; set; } = null!;
     public string AuthorImage { get; set; } = null!;
+    public string BackgroundImage { get; set; } = null!;
+    public string LikesPercent { get; set; } = null!;
 }
