@@ -12,7 +12,7 @@ namespace ASPNetAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-//[UseApiKey]
+[UseApiKey]
 public class CourseController(CourseService courseService, AppDbContext context) : ControllerBase
 {
     private readonly CourseService _courseService = courseService;

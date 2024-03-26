@@ -24,7 +24,7 @@
             {
                 @foreach (var course in Model.Courses)
                 {
-                    <a class="course" asp asp-controller="Courses" asp-action="SingleCourse" asp-route-courseId="@course.Id">
+                    <div class="course">
                         <img src="@course!.BackgroundImage" alt="course image">
                         <div class="tags">
 
@@ -35,10 +35,10 @@
 
                         </div>
                         <div class="bookmark-remove">
-                            <p class="bookmark"><i class="fa-solid fa-bookmark"></i></p>
+                            <a asp-controller="Courses" asp-action="SaveCourse" asp-route-courseId="@course.Id" class="bookmark"><i class="fa-solid fa-bookmark"></i></a>
                             <p class="remove">@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Courses") ? "Bookmark" : "Remove")</p>
                         </div>
-                        <div class="details">
+                        <a class="details" asp asp-controller="Courses" asp-action="SingleCourse" asp-route-courseId="@course.Id">
                             <h4>@course.CourseTitle</h4>
                             <p class="author">By @course.Author</p>
                             <h5 class="@(string.IsNullOrEmpty(course.OldPrice) ? "" : "sale")">@course.NewPrice <span>@course.OldPrice</span></h5>
@@ -46,8 +46,8 @@
                                 <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
                                 <p><i class="fa-regular fa-thumbs-up"></i> @course.LikesPercent (@course.Likes)</p>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 }               
             }
 

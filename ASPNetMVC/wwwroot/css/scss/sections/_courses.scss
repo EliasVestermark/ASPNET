@@ -62,11 +62,6 @@
                     width: calc(33% - 11px);
                 }
 
-                &:hover {
-                    cursor: pointer;
-                    text-decoration: none;
-                }
-
                 img {
                     width: 100%;
                     border-top-left-radius: 10px;
@@ -112,9 +107,13 @@
                         padding: 7px 14px;
                         border-radius: 50%;
                         align-self: center;
+                        color: $gray-500;
+                        outline: none;
+                        border: none;
 
                         &:hover {
                             cursor: pointer;
+                            color: #6366F1;
                         }
                     }
 
@@ -133,6 +132,11 @@
 
                 .details {
                     padding: 16px;
+
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
 
                     p {
                         margin: 0;

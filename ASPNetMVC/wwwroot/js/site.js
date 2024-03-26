@@ -1,4 +1,18 @@
-﻿const toggleMenu = () => {
+﻿document.addEventListener('DOMContentLoaded', function () {
+    let sw = document.querySelector('#switch-mode')
+
+    sw.addEventListener('change', function () {
+        let theme = this.checked ? "dark" : "light"
+
+        fetch(`/settings?mode=${theme}`)
+            .then(res => {
+                if (res.ok)
+                    window.location.reload()
+            })
+    })
+})
+
+const toggleMenu = () => {
     document.getElementById('menu').classList.toggle('hide')
     document.getElementById('buttons').classList.toggle('hide')
     document.getElementById('button').classList.toggle('hide')

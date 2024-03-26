@@ -8,6 +8,22 @@ html, body {
   font-family: "Manrope", sans-serif;
   font-size: 16px;
   background-color: #0B0F19;
+  position: relative;
+}
+html #cookie-consent, body #cookie-consent {
+  background-color: #33354D;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+html #cookie-consent .container, body #cookie-consent .container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
 }
 
 .text-xs {
@@ -2151,10 +2167,6 @@ footer .container .social-media {
     width: calc(33% - 11px);
   }
 }
-#courses .container .courses .course:hover {
-  cursor: pointer;
-  text-decoration: none;
-}
 #courses .container .courses .course img {
   width: 100%;
   border-top-left-radius: 10px;
@@ -2195,9 +2207,13 @@ footer .container .social-media {
   padding: 7px 14px;
   border-radius: 50%;
   align-self: center;
+  color: #B4B7C9;
+  outline: none;
+  border: none;
 }
 #courses .container .courses .course .bookmark-remove .bookmark:hover {
   cursor: pointer;
+  color: #6366F1;
 }
 #courses .container .courses .course .bookmark-remove .remove {
   display: none;
@@ -2211,6 +2227,10 @@ footer .container .social-media {
 }
 #courses .container .courses .course .details {
   padding: 16px;
+}
+#courses .container .courses .course .details:hover {
+  cursor: pointer;
+  text-decoration: none;
 }
 #courses .container .courses .course .details p {
   margin: 0;
