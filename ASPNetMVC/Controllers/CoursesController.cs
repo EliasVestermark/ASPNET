@@ -62,27 +62,26 @@ public class CoursesController(AppDbContext context) : Controller
     public async Task<IActionResult> SaveCourse(int courseId)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var user = await _context.Users.Include(u => u.Courses).FirstOrDefaultAsync(x => x.Id == userId);
+        var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == courseId);
 
-        if (userId != null)
+        if (user!.Courses != null)
         {
-            var user = await _context.Users.Include(u => u.Courses).FirstOrDefaultAsync(x => x.Id == userId);
-            var courses = new List<CourseEntity>();
-            var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == courseId);
-
-            courses.Add(course!);
-
-            if (user!.Courses != null)
+            if (!user!.Courses!.Any(x => x.Id == courseId))
             {
-                if (!user!.Courses!.Any(x => x.Id == courseId))
+                if (course != null)
                 {
-                    user.Courses = courses;
+                    user.Courses.Add(course);
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
             }
-            else
+        }
+        else
+        {
+            if (course != null)
             {
-                user!.Courses = courses;
+                user.Courses!.Add(course);
                 _context.Update(user);
                 await _context.SaveChangesAsync();
             }
