@@ -46,6 +46,7 @@ public class CourseController(CourseService courseService, AppDbContext context)
     }
 
     [HttpGet]
+    //[Authorize] Uncomment to test access token logic from MVC CoursesController
     public async Task<IActionResult> GetAll()
     {
         var result = await _courseService.GetAllCourseModels();

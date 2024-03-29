@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\js\SearchAndFilter.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\SearchAndFilter.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +21,7 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\js\SearchAndFilter.js" />
   </ItemGroup>
 
   <ItemGroup>

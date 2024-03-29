@@ -11,13 +11,12 @@
         <div class="title">
             <h1>Courses</h1>
             <div class="input-fields">
-                <select class="input">
-                    <option value="All categories">All categories</option>
-                    <option value="Option1">Option1</option>
-                    <option value="Option2">Option2</option>
-                    <option value="Option3">Option3</option>
+                <select id="filter" class="input">
+                    <option value="all categories">All categories</option>
+                    <option value="best-seller">Best Seller</option>
+                    <option value="digital">Digital</option>
                 </select>
-                <input class="input" type="text" placeholder="Search courses">
+                <input id="search-input" class="input" type="text" placeholder="Search courses">
             </div>
         </div>
         <div class="courses">
@@ -32,7 +31,7 @@
 
                             @foreach (var tag in course!.Tags)
                             {
-                                <p class="@tag.ToLower()">@tag</p>
+                                <p class="tag @tag.ToLower()">@tag</p>
                             }
 
                         </div>
@@ -40,13 +39,15 @@
                             <a asp-controller="Courses" asp-action="SaveCourse" asp-route-courseId="@course.Id" class="@(await Helper.IsCourseSavedByUser(course.Id, User.FindFirstValue(ClaimTypes.NameIdentifier)!) ? "bookmark saved" : "bookmark")"><i class="fa-solid fa-bookmark"></i></a>
                             <p class="remove">@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Courses") ? "Bookmark" : "Remove")</p>
                         </div>
-                        <a class="details" asp asp-controller="Courses" asp-action="SingleCourse" asp-route-courseId="@course.Id">
-                            <h4>@course.CourseTitle</h4>
-                            <p class="author">By @course.Author</p>
-                            <h5 class="@(string.IsNullOrEmpty(course.OldPrice) ? "" : "sale")">@course.NewPrice <span>@course.OldPrice</span></h5>
-                            <div class="rating">
-                                <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
-                                <p><i class="fa-regular fa-thumbs-up"></i> @course.LikesPercent (@course.Likes)</p>
+                        <a class="course-link" asp asp-controller="Courses" asp-action="SingleCourse" asp-route-courseId="@course.Id">
+                            <div class ="details">
+                                <h4>@course.CourseTitle</h4>
+                                <p class="author">By @course.Author</p>
+                                <h5 class="@(string.IsNullOrEmpty(course.OldPrice) ? "" : "sale")">@course.NewPrice <span>@course.OldPrice</span></h5>
+                                <div class="rating">
+                                    <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
+                                    <p><i class="fa-regular fa-thumbs-up"></i> @course.LikesPercent (@course.Likes)</p>
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -72,3 +73,4 @@
         </div>
     </div>
 </section>
+<script src="~/js/SearchAndFilter.js"></script>

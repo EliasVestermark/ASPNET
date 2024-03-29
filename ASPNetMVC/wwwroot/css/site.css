@@ -2033,7 +2033,7 @@ footer .container .social-media {
 #contact .container .contact-us .text {
   margin-left: 34px;
 }
-#contact .container .sign-in-form {
+#contact .container .contact-form {
   background-color: #FFFFFF;
   padding: 20px;
   display: flex;
@@ -2044,26 +2044,26 @@ footer .container .social-media {
   text-align: center;
 }
 @media (min-width: 992px) {
-  #contact .container .sign-in-form {
+  #contact .container .contact-form {
     position: absolute;
     width: 50%;
     text-align: left;
   }
 }
-#contact .container .sign-in-form .label-input {
+#contact .container .contact-form .label-input {
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
-#contact .container .sign-in-form .label-input .label-span {
+#contact .container .contact-form .label-input .label-span {
   display: flex;
   justify-content: space-between;
 }
-#contact .container .sign-in-form .label-input .label-span label {
+#contact .container .contact-form .label-input .label-span label {
   font-weight: 600;
   color: #0B0F19;
 }
-#contact .container .sign-in-form .label-input .label-span span {
+#contact .container .contact-form .label-input .label-span span {
   line-height: 160%;
   font-weight: 400;
   color: #565973;
@@ -2071,13 +2071,13 @@ footer .container .social-media {
   font-size: 14px !important;
   color: #EF4444;
 }
-#contact .container .sign-in-form .label-input .label-span .optional {
+#contact .container .contact-form .label-input .label-span .optional {
   color: #9397AD;
 }
-#contact .container .sign-in-form .label-input textarea {
+#contact .container .contact-form .label-input textarea {
   resize: none;
 }
-#contact .container .sign-in-form .input {
+#contact .container .contact-form .input {
   flex: 1;
   display: block;
   border: 1px solid #E2E5F1;
@@ -2087,15 +2087,21 @@ footer .container .social-media {
   background-color: #FFFFFF;
   color: #9397AD;
 }
-#contact .container .sign-in-form .input.input-validation-error {
+#contact .container .contact-form .input.input-validation-error {
   color: #EF4444;
   border-color: #EF4444;
 }
-#contact .container .sign-in-form ::placeholder {
+#contact .container .contact-form ::placeholder {
   color: #B4B7C9;
 }
-#contact .container .sign-in-form button {
+#contact .container .contact-form button {
   align-self: baseline;
+}
+#contact .container .contact-form .message.error {
+  color: #EF4444;
+}
+#contact .container .contact-form .message.success {
+  color: #25c239;
 }
 #contact .map {
   display: none;
@@ -2228,31 +2234,31 @@ footer .container .social-media {
 #courses .container .courses .course .bookmark-remove .bookmark:hover ~ .remove {
   display: block;
 }
-#courses .container .courses .course .details {
-  padding: 16px;
-}
-#courses .container .courses .course .details:hover {
+#courses .container .courses .course .course-link:hover {
   cursor: pointer;
   text-decoration: none;
 }
-#courses .container .courses .course .details p {
+#courses .container .courses .course .course-link .details {
+  padding: 16px;
+}
+#courses .container .courses .course .course-link .details p {
   margin: 0;
   color: #9397AD;
 }
-#courses .container .courses .course .details h5 {
+#courses .container .courses .course .course-link .details h5 {
   margin-top: 0;
   color: #6366F1;
 }
-#courses .container .courses .course .details h5.sale {
+#courses .container .courses .course .course-link .details h5.sale {
   color: #EF4444;
 }
-#courses .container .courses .course .details h5 span {
+#courses .container .courses .course .course-link .details h5 span {
   margin-left: 10px;
   color: #B4B7C9;
   font-weight: 400;
   text-decoration: line-through;
 }
-#courses .container .courses .course .details .rating {
+#courses .container .courses .course .course-link .details .rating {
   border-top: 1px solid #E2E5F1;
   color: #9397AD;
   margin-top: 20px;

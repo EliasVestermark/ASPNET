@@ -20,7 +20,7 @@
 
         <header>
             <div class="container">
-                <a id="logo" asp-controller="Home" asp-action="Index"><img id="logoImg" src="~/images/silicon-logo-light_theme.svg" alt=""></a>
+                <a id="logo" asp-controller="Home" asp-action="Index"><img id="logoImg" src="@(isDark ? "/images/silicon-logo-dark_theme.svg" : "/images/silicon-logo-light_theme.svg")" alt=""></a>
                 <button class="btn-mobile" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
                 <div id="buttons" class="@((!User.Identity!.IsAuthenticated) ? "buttons" : "hide-conditional")">
                     <a class="btn-gray" asp-controller="Account" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><p>Sign In</p></a>
