@@ -98,14 +98,27 @@
                     right: 9%;
                     transform: translateX(50%);
 
+                    p {
+                        color: $gray-500;
+                    }
+
                     .bookmark {
                         background-color: $white;
                         padding: 7px 14px;
                         border-radius: 50%;
                         align-self: center;
+                        color: $gray-500;
+                        outline: none;
+                        border: none;
 
                         &:hover {
                             cursor: pointer;
+                            color: #6366F1;
+                        }
+
+                        &.saved {                          
+                            color: $theme;
+                            
                         }
                     }
 
@@ -125,8 +138,14 @@
                 .details {
                     padding: 16px;
 
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
+
                     p {
                         margin: 0;
+                        color: $gray-600;
                     }
 
                     h5 {

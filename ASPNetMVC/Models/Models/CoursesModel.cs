@@ -2,5 +2,5 @@
 
 public class CoursesModel
 {
-    public List<Course> Courses { get; set; } = [];
+    public IEnumerable<SingleCourseModel> Courses { get; set; } = [];
 }

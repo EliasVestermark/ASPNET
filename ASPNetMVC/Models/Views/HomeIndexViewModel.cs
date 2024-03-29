@@ -1,4 +1,5 @@
 ﻿using ASPNetMVC.Models.Components;
+using ASPNetMVC.Models.Models;
 using ASPNetMVC.Models.Sections;
 
 namespace ASPNetMVC.Models.Views;
@@ -162,12 +163,5 @@ public class HomeIndexViewModel
         }
     };
 
-    public NewsletterViewModel Newsletter { get; set; } = new NewsletterViewModel
-    {
-        Id = "newsletter",
-        Title = "Don't Want To Miss Anything?",
-        Text = "Sign up for Newsletters",
-        Image = new ImageViewModel { ImageUrl = "images/icons/curlyarrow.svg", Alt = "curly arrow" },
-        Checkboxes = new List<string> { "Daily Newsletter", "Advertising Updates", "Week in Review", "Event Updates", "Startups Weekly", "Podcasts"}
-    };
+    public NewsletterViewModel Newsletter { get; set; } = new NewsletterViewModel();
 }

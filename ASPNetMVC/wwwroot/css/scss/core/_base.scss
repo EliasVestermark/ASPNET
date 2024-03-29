@@ -2,6 +2,24 @@ html, body {
     @include standard-text;
     font-size: 16px;
     background-color: $white;
+    position: relative;
+
+    #cookie-consent {
+        background-color: $gray-800;
+        color: #FFFFFF;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        .container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 0;
+        }
+    }
 }
 
 .text-xs { @include text-xs; }

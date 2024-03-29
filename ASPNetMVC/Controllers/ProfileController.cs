@@ -1,26 +1,25 @@
 ﻿using ASPNetMVC.Models.Models;
 using ASPNetMVC.Models.Views;
+using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace ASPNetMVC.Controllers;
 
 [Authorize]
-public class ProfileController : Controller
+public class ProfileController(UserManager<UserEntity> userManager, AddressService addressManager, SignInManager<UserEntity> signInManager, AppDbContext appDbContext) : Controller
 {
-    private readonly UserManager<UserEntity> _userManager;
-    private readonly SignInManager<UserEntity> _signInManager;
-    private readonly AddressService _addressManager;
-
-    public ProfileController(UserManager<UserEntity> userManager, AddressService addressManager, SignInManager<UserEntity> signInManager)
-    {
-        _userManager = userManager;
-        _addressManager = addressManager;
-        _signInManager = signInManager;
-    }
+    private readonly UserManager<UserEntity> _userManager = userManager;
+    private readonly SignInManager<UserEntity> _signInManager = signInManager;
+    private readonly AddressService _addressManager = addressManager;
+    private readonly AppDbContext _context = appDbContext;
 
     [HttpGet]
     public async Task<IActionResult> Index(string message = "")
@@ -44,53 +43,38 @@ public class ProfileController : Controller
     public async Task<IActionResult> SavedCourses()
     {
         var viewModel = await PopulateProfileIndexAsync();
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var courseIdList = new List<int>();
 
-        //viewModel.SavedCoursesModel = await GetCourses();
-
-        viewModel.SavedCoursesModel = new ProfileSavedCoursesModel
+        if (userId != null)
         {
-            Courses = new List<Course> {
-                new Course
+            var user = await _context.Users.Include(u => u.Courses).FirstOrDefaultAsync(x => x.Id == userId);
+            
+            if (user!.Courses !=  null)
+            {
+                foreach (var course in user.Courses)
                 {
-                    ImageUrl = "/images/bookmark-example.svg",
-                    Title = "Blender Character Creator v2.0 for Video Games Design",
-                    BestSeller = "",
-                    Author = "Ralph Edwards",
-                    NewPrice = "$18.99",
-                    OldPrice = "$27.99",
-                    Sale = "sale",
-                    Duration = "160 hours",
-                    RatingPercent = "92%",
-                    RatingLikes = "(3.1K)"
-                },
-                new Course
+                    courseIdList.Add(course.Id);
+                }
+            } 
+        }
+
+        if (courseIdList.Count > 0)
+        {
+            using var http = new HttpClient();
+
+            foreach (var id in courseIdList)
+            {
+                var response = await http.GetAsync($"https://localhost:7269/api/course/{id}?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1&Id=");
+
+                if (response.IsSuccessStatusCode)
                 {
-                    ImageUrl = "/images/bookmark-example.svg",
-                    Title = "How to go to sleep",
-                    BestSeller = "Best-Seller",
-                    Author = "Edwin Edwards",
-                    NewPrice = "$18.99",
-                    OldPrice = "",
-                    Sale = "",
-                    Duration = "160 hours",
-                    RatingPercent = "92%",
-                    RatingLikes = "(3.1K)"
-                },
-                new Course
-                {
-                    ImageUrl = "/images/bookmark-example.svg",
-                    Title = "Blender Character Creator v2.0 for Video Games Design",
-                    BestSeller = "",
-                    Author = "Ralph Edwards",
-                    NewPrice = "$18.99",
-                    OldPrice = "$27.99",
-                    Sale = "sale",
-                    Duration = "160 hours",
-                    RatingPercent = "92%",
-                    RatingLikes = "(3.1K)"
-                },
+                    var json = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<SingleCourseModel>(json);
+                    viewModel.SavedCoursesModel.Courses.Add(data!);
+                }
             }
-        };
+        }
 
         viewModel.Id = "profile-saved-courses";
         return View("Index", viewModel);
@@ -194,6 +178,16 @@ public class ProfileController : Controller
         return RedirectToAction("Security", new { message = "Invalid information, please try again" });
     }
 
+    public async Task<IActionResult> RemoveCourse(int courseId)
+    {
+        return RedirectToAction("SavedCourses", "Profile");
+    }
+
+    public async Task<IActionResult> RemoveAllCourses()
+    {
+        return RedirectToAction("SavedCourses", "Profile");
+    }
+
     private async Task<ProfileBasicInfoModel> PopulateProfileBasicInfoAsync()
     {
         var user = await _userManager.GetUserAsync(User);
@@ -247,10 +241,5 @@ public class ProfileController : Controller
             AddressInfo = await PopulateAddressInfoAsync(),
             IsExternalAccount = user!.IsExternalAccount
         };
-    }
-
-    private async Task<List<Course>> GetCourses()
-    {
-        return null;
     }
 }
