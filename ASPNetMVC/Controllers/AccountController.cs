@@ -1,4 +1,5 @@
-﻿using ASPNetMVC.Models.Views;
+﻿using ASPNetMVC.Models.Models;
+using ASPNetMVC.Models.Views;
 using Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ASPNetMVC.Controllers;
 
