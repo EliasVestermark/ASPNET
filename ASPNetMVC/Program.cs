@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase")));
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<IsCourseSaved>();
+builder.Services.AddHttpClient();
 
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {

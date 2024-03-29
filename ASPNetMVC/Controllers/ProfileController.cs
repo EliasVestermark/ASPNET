@@ -178,6 +178,16 @@ public class ProfileController(UserManager<UserEntity> userManager, AddressServi
         return RedirectToAction("Security", new { message = "Invalid information, please try again" });
     }
 
+    public async Task<IActionResult> RemoveCourse(int courseId)
+    {
+        return RedirectToAction("SavedCourses", "Profile");
+    }
+
+    public async Task<IActionResult> RemoveAllCourses()
+    {
+        return RedirectToAction("SavedCourses", "Profile");
+    }
+
     private async Task<ProfileBasicInfoModel> PopulateProfileBasicInfoAsync()
     {
         var user = await _userManager.GetUserAsync(User);

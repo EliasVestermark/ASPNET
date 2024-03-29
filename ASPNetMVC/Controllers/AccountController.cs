@@ -3,14 +3,17 @@ using Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Security.Claims;
+using System.Text;
 
 namespace ASPNetMVC.Controllers;
 
-public class AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager) : Controller
+public class AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, HttpClient http) : Controller
 {
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
+    private readonly HttpClient _http = http;
 
     [Route("/signup")]
     [HttpGet]
@@ -79,8 +82,10 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
         if (ModelState.IsValid)
         {
             var result = await _signInManager.PasswordSignInAsync(viewModel.Form.Email, viewModel.Form.Password, viewModel.Form.RememberMe, false);
+
             if (result.Succeeded)
             {
+                await GetToken(viewModel.Form.Email, viewModel.Form.Password);
                 return RedirectToAction("Index", "Profile");
             }
         }
@@ -94,6 +99,7 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     [HttpGet]
     public new async Task<IActionResult> SignOut()
     {
+        Response.Cookies.Delete("AccessToken");
         await _signInManager.SignOutAsync();
         return RedirectToAction("SignIn");
     }
@@ -210,5 +216,31 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
         ModelState.AddModelError("InvalidGoogleAuthentication", "Failed to authenticate with Google");
         return RedirectToAction("SignIn", "Account");
+    }
+
+    public async Task<bool> GetToken(string email, string password)
+    {
+        var login = new Dictionary<string, string>()
+        {
+            { "email", email}, { "password", password }
+        };
+        var content = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json");
+        var response = await _http.PostAsync("https://localhost:7269/api/Auth/token?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1", content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var token = await response.Content.ReadAsStringAsync();
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTime.Now.AddDays(1)
+            };
+
+            Response.Cookies.Append("AccessToken", token, cookieOptions);
+            return true;
+        }
+
+        return false;
     }
 }

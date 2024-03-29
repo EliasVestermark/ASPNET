@@ -2,7 +2,7 @@
 
 <div class="title-btn">
     <h1>Saved Items</h1>
-    <a class="btn-delete"><i class="fa-solid fa-trash"></i> Delete all</a>
+    <a asp-controller="Profile" asp-action="RemoveAllCourses" class="btn-delete"><i class="fa-solid fa-trash"></i> Delete all</a>
 </div>
 <div class="courses">
 
@@ -19,7 +19,7 @@
 
             </div>
             <div class="bookmark-remove">
-                <p class="bookmark"><i class="fa-solid fa-bookmark"></i></p>
+                <a asp-controller="Profile" asp-action="RemoveCourse" asp-route-courseId="@course.Id" class="bookmark"><i class="fa-solid fa-bookmark"></i></a>
                 <p class="remove">@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Courses") ? "Bookmark" : "Remove")</p>
             </div>
             <div class="details">

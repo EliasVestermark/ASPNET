@@ -3,6 +3,7 @@ using ASPNetAPI.Models;
 using ASPNetAPI.Services;
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -18,6 +19,7 @@ public class CourseController(CourseService courseService, AppDbContext context)
     private readonly CourseService _courseService = courseService;
     private readonly AppDbContext _context = context;
 
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Create(CourseModel model)
     {
@@ -69,6 +71,7 @@ public class CourseController(CourseService courseService, AppDbContext context)
         return NotFound();
     }
 
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateOne(int id, CourseModel course)
     {
@@ -92,6 +95,7 @@ public class CourseController(CourseService courseService, AppDbContext context)
         return NotFound();
     }
 
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteOne(int id)
     {

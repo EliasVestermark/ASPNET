@@ -1,5 +1,6 @@
 ﻿using ASPNetMVC.Models.Models;
 using ASPNetMVC.Models.Sections;
+using Azure;
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -7,35 +8,42 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 
 namespace ASPNetMVC.Controllers;
 
 [Authorize]
-public class CoursesController(AppDbContext context) : Controller
+public class CoursesController(AppDbContext context, HttpClient http) : Controller
 {
     private readonly AppDbContext _context = context;
+    private readonly HttpClient _http = http;
 
     [Route("/courses")]
     [HttpGet]
     public async Task<IActionResult> Courses()
     {
-        using var http = new HttpClient();
-        var response = await http.GetAsync("https://localhost:7269/api/course?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
-
-        if (response.IsSuccessStatusCode)
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
         {
-            var json = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<IEnumerable<SingleCourseModel>>(json);
-            var viewModel = new CoursesModel { Courses = data! };
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            return View(viewModel);
+            var response = await _http.GetAsync("https://localhost:7269/api/course?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<IEnumerable<SingleCourseModel>>(json);
+                var viewModel = new CoursesModel { Courses = data! };
+
+                return View(viewModel);
+            }
         }
-        else
-        {
-            return RedirectToAction("Error404", "Home");
-        }
+
+        //using var http = new HttpClient();
+        //var response = await http.GetAsync("https://localhost:7269/api/course?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
+
+        return RedirectToAction("Error404", "Home");
     }
 
     [Route("/singlecourse")]

@@ -115,6 +115,11 @@
                             cursor: pointer;
                             color: #6366F1;
                         }
+
+                        &.saved {                          
+                            color: $theme;
+                            
+                        }
                     }
 
                     .remove {

@@ -2215,6 +2215,9 @@ footer .container .social-media {
   cursor: pointer;
   color: #6366F1;
 }
+#courses .container .courses .course .bookmark-remove .bookmark.saved {
+  color: #6366F1;
+}
 #courses .container .courses .course .bookmark-remove .remove {
   display: none;
   background-color: rgb(35, 35, 35);
