@@ -46,7 +46,6 @@ public class CourseController(CourseService courseService, AppDbContext context)
     }
 
     [HttpGet]
-    //[Authorize] Uncomment to test access token logic from MVC CoursesController
     public async Task<IActionResult> GetAll()
     {
         var result = await _courseService.GetAllCourseModels();
@@ -56,6 +55,20 @@ public class CourseController(CourseService courseService, AppDbContext context)
             return Ok(result);
         }
         
+        return NotFound();
+    }
+
+    [HttpGet("{pageSize}/{page}")]
+    /*[Authorize]*/ /*Uncomment to test access token logic from MVC CoursesController*/
+    public async Task<IActionResult> GetPaginated(int pageSize, int page)
+    {
+        var result = await _courseService.GetPaginatedCourseModels(pageSize, page);
+
+        if (!result.IsNullOrEmpty())
+        {
+            return Ok(result);
+        }
+
         return NotFound();
     }
 

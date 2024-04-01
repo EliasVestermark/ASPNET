@@ -20,16 +20,16 @@ public class CoursesController(AppDbContext context, HttpClient http) : Controll
     private readonly AppDbContext _context = context;
     private readonly HttpClient _http = http;
 
-    [Route("/courses")]
     [HttpGet]
-    public async Task<IActionResult> Courses()
+    public async Task<IActionResult> Courses(int pageSize = 3, int page = 1)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
 
         #region ACCESSTOKEN TEST
 
-        //This code snippet uses access token to access GetAll method in the API CourseController. Works only with non-external accounts (not Google and Facebook).
+        //This code snippet uses access token to access GetAll method in the API CourseController.
+        //Works only with non-external accounts (not Google and Facebook).
 
         if (!user!.IsExternalAccount)
         {
@@ -37,13 +37,16 @@ public class CoursesController(AppDbContext context, HttpClient http) : Controll
             {
                 _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var authorizedResponse = await _http.GetAsync("https://localhost:7269/api/course?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
+                var authorizedResponse = await _http.GetAsync($"https://localhost:7269/api/course/{pageSize}/{page}?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
 
                 if (authorizedResponse.IsSuccessStatusCode)
                 {
                     var json = await authorizedResponse.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<IEnumerable<SingleCourseModel>>(json);
+                    var data = JsonConvert.DeserializeObject<List<SingleCourseModel>>(json);
+                    
                     var viewModel = new CoursesModel { Courses = data! };
+                    viewModel.TotalCourses = _context.Courses.Count();
+                    viewModel.Page = page;
 
                     return View(viewModel);
                 }
@@ -52,13 +55,16 @@ public class CoursesController(AppDbContext context, HttpClient http) : Controll
 
         #endregion
 
-        var response = await _http.GetAsync("https://localhost:7269/api/course?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
+        var response = await _http.GetAsync($"https://localhost:7269/api/course/{pageSize}/{page}?key=OTExMDIyYjQtNzUzMi00ZTQ0LTgxOWEtNDg3NDhiN2UwZGI1");
 
         if (response.IsSuccessStatusCode)
         {
             var json = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<IEnumerable<SingleCourseModel>>(json);
+            var data = JsonConvert.DeserializeObject<List<SingleCourseModel>>(json);
+            
             var viewModel = new CoursesModel { Courses = data! };
+            viewModel.TotalCourses = _context.Courses.Count();
+            viewModel.Page = page;
 
             return View(viewModel);
         }

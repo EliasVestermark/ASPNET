@@ -77,6 +77,37 @@ public class CourseService(AppDbContext context)
         return null!;
     }
 
+    public async Task<IEnumerable<CourseModel>> GetPaginatedCourseModels(int pageSize, int page)
+    {
+        int startIndex = (pageSize * page) - 3;
+        int endIndex = (pageSize * page) - 1;
+        var paginatedList = new List<CourseModel>();
+
+        var courses = await _context.Courses
+            .Include(course => course.Tags)
+            .Include(course => course.WhatYouLearns)
+            .Include(course => course.Includes)
+            .Include(course => course.ProgramDetails)
+            .ToListAsync();
+
+        if (endIndex >= courses.Count() - 1)
+        {
+            endIndex = courses.Count() - 1;
+        }
+
+        if (courses != null)
+        {
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                paginatedList.Add(PopulateCourseModel(courses[i]));
+            }
+
+            return paginatedList;
+        }
+
+        return null!;
+    }
+
     public async Task<CourseModel> GetOneCourseModel(int id)
     {
         var course = await _context.Courses

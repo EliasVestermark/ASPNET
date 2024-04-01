@@ -2270,17 +2270,17 @@ footer .container .social-media {
   padding-top: 50px;
   align-self: center;
 }
-#courses .container .buttons button {
+#courses .container .buttons a {
   background-color: #FFFFFF;
   color: #565973;
   border: none;
   padding: 10px 18px;
   border-radius: 10px;
 }
-#courses .container .buttons button.current {
+#courses .container .buttons a.current {
   background-color: #F3F6FF;
 }
-#courses .container .buttons button:hover {
+#courses .container .buttons a:hover {
   background-color: #6366F1;
   color: #EFF2FC;
 }
