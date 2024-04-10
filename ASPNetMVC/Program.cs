@@ -1,4 +1,5 @@
 using ASPNetMVC.Helpers;
+using ASPNetMVC.Services;
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Infrastructure.Services;
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase")));
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<ProfileManager>();
 builder.Services.AddScoped<IsCourseSaved>();
 builder.Services.AddHttpClient();
 

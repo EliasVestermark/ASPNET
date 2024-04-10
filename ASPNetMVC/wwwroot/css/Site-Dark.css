@@ -473,6 +473,7 @@ header .container .button {
 }
 header .container .button img {
   width: 44px;
+  border-radius: 50%;
 }
 @media (min-width: 992px) {
   header .container .button {
@@ -1431,7 +1432,13 @@ footer .container .social-media {
   display: flex;
   justify-content: center;
 }
-#profile-details .container .profile .image i {
+#profile-details .container .profile .image img {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+}
+#profile-details .container .profile .image .upload {
+  border: none;
   position: absolute;
   bottom: 0;
   left: calc(50% + 60px);
@@ -1439,6 +1446,9 @@ footer .container .social-media {
   padding: 10px;
   background-color: #0B0F19;
   border-radius: 50%;
+}
+#profile-details .container .profile .image .upload:hover {
+  cursor: pointer;
 }
 #profile-details .container .profile .name-email {
   padding: 20px 0;
@@ -1594,7 +1604,12 @@ footer .container .social-media {
   display: flex;
   justify-content: center;
 }
-#profile-security .container .profile .image i {
+#profile-security .container .profile .image img {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+}
+#profile-security .container .profile .image .upload {
   position: absolute;
   bottom: 0;
   left: calc(50% + 60px);
@@ -1602,6 +1617,9 @@ footer .container .social-media {
   padding: 10px;
   background-color: #0B0F19;
   border-radius: 50%;
+}
+#profile-security .container .profile .image .upload:hover {
+  cursor: pointer;
 }
 #profile-security .container .profile .name-email {
   padding: 20px 0;
@@ -1806,7 +1824,12 @@ footer .container .social-media {
   display: flex;
   justify-content: center;
 }
-#profile-saved-courses .container .profile .image i {
+#profile-saved-courses .container .profile .image img {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+}
+#profile-saved-courses .container .profile .image .upload {
   position: absolute;
   bottom: 0;
   left: calc(50% + 60px);
@@ -1814,6 +1837,9 @@ footer .container .social-media {
   padding: 10px;
   background-color: #0B0F19;
   border-radius: 50%;
+}
+#profile-saved-courses .container .profile .image .upload:hover {
+  cursor: pointer;
 }
 #profile-saved-courses .container .profile .name-email {
   padding: 20px 0;

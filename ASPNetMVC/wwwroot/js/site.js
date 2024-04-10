@@ -41,5 +41,25 @@ const checkSize = () => {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    handleImageUpload();
+})
+
+function handleImageUpload() {
+    try {
+        let fileUploader = document.querySelector('#uploadFile')
+
+        if (fileUploader != undefined) {
+            fileUploader.addEventListener('change', function () {
+
+                if (this.files.length > 0) {
+                    this.form.submit();
+                }
+            })
+        }
+    }
+    catch { }
+}
+
 window.addEventListener('resize', checkSize);
 checkSize();

@@ -1,6 +1,8 @@
 ﻿@{
     var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
     var isDark = (themeMode == "dark") ? true : false;
+
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <!DOCTYPE html>
@@ -23,7 +25,10 @@
                 <a id="logo" asp-controller="Home" asp-action="Index"><img id="logoImg" src="@(isDark ? "/images/silicon-logo-dark_theme.svg" : "/images/silicon-logo-light_theme.svg")" alt=""></a>
                 <button class="btn-mobile" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
                 <div id="button" class="@((User.Identity!.IsAuthenticated) ? "button" : "hide-conditional")">
-                    <a asp-controller="Profile" asp-action="Index"><img src="~/images/john.svg" alt=""></a>
+                    @if (user != null)
+                    {
+                        <a asp-controller="Profile" asp-action="Index"><img src="@((!string.IsNullOrEmpty(user!.ProfileImageUrl)) ? $"/uploads/{user.ProfileImageUrl}" : "/images/profile_placeholder.jpg")" alt=""></a>
+                    }
                 </div>
                 <div id="buttons" class="@((!User.Identity!.IsAuthenticated) ? "buttons" : "hide-conditional")">
                     <a class="btn-gray" asp-controller="Account" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><p>Sign In</p></a>
