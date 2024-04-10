@@ -21,7 +21,7 @@ public class CourseController(CourseService courseService, AppDbContext context)
 
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> Create(CourseModel model)
+    public async Task<IActionResult> Create(CreateCourseModel model)
     {
         if (model != null)
         {
@@ -46,6 +46,7 @@ public class CourseController(CourseService courseService, AppDbContext context)
     }
 
     [HttpGet]
+    //[Authorize]
     public async Task<IActionResult> GetAll()
     {
         var result = await _courseService.GetAllCourseModels();
@@ -66,7 +67,14 @@ public class CourseController(CourseService courseService, AppDbContext context)
 
         if (!result.IsNullOrEmpty())
         {
-            return Ok(result);
+            var totalCourses = await _context.Courses.CountAsync();
+
+            var response = new CoursesResult
+            {
+                Courses = result.ToList(),
+                TotalCourses = totalCourses
+            };
+            return Ok(response);
         }
 
         return NotFound();
@@ -87,7 +95,7 @@ public class CourseController(CourseService courseService, AppDbContext context)
 
     [Authorize]
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateOne(int id, CourseModel course)
+    public async Task<IActionResult> UpdateOne(int id, CreateCourseModel course)
     {
         var result = await _courseService.GetOneCourseEntity(id);
 

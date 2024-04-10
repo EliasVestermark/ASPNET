@@ -42,10 +42,10 @@ public class CoursesController(AppDbContext context, HttpClient http) : Controll
                 if (authorizedResponse.IsSuccessStatusCode)
                 {
                     var json = await authorizedResponse.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<List<SingleCourseModel>>(json);
+                    var data = JsonConvert.DeserializeObject<CourseResponse>(json);
                     
-                    var viewModel = new CoursesModel { Courses = data! };
-                    viewModel.TotalCourses = _context.Courses.Count();
+                    var viewModel = new CoursesModel { Courses = data!.Courses! };
+                    viewModel.TotalCourses = data.TotalCourses;
                     viewModel.Page = page;
 
                     return View(viewModel);
@@ -60,10 +60,10 @@ public class CoursesController(AppDbContext context, HttpClient http) : Controll
         if (response.IsSuccessStatusCode)
         {
             var json = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<List<SingleCourseModel>>(json);
+            var data = JsonConvert.DeserializeObject<CourseResponse>(json);
             
-            var viewModel = new CoursesModel { Courses = data! };
-            viewModel.TotalCourses = _context.Courses.Count();
+            var viewModel = new CoursesModel { Courses = data!.Courses };
+            viewModel.TotalCourses = data.TotalCourses;
             viewModel.Page = page;
 
             return View(viewModel);

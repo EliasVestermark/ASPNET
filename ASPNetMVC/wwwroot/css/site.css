@@ -469,7 +469,7 @@ header .container .btn-switch {
 }
 header .container .button {
   grid-area: buttons;
-  display: none;
+  justify-self: center;
 }
 header .container .button img {
   width: 44px;
@@ -1573,7 +1573,7 @@ footer .container .social-media {
 }
 #profile-security .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 @media (min-width: 768px) {
   #profile-security .container {

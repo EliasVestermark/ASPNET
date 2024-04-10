@@ -60,7 +60,7 @@ header {
 
         .button {
             grid-area: buttons;
-            display: none;
+            justify-self: center;
 
             img {
                 width: 44px;

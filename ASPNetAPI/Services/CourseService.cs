@@ -9,7 +9,7 @@ public class CourseService(AppDbContext context)
 {
     private readonly AppDbContext _context = context;
 
-    public async Task<bool> CreateCourse(CourseModel model)
+    public async Task<bool> CreateCourse(CreateCourseModel model)
     {
         try
         {
@@ -142,7 +142,7 @@ public class CourseService(AppDbContext context)
         return null!;
     }
 
-    public async Task<CourseModel> UpdateCourse(CourseModel model, CourseEntity courseEntity)
+    public async Task<CourseModel> UpdateCourse(CreateCourseModel model, CourseEntity courseEntity)
     {
         try
         {
@@ -238,7 +238,7 @@ public class CourseService(AppDbContext context)
         return courseModel;
     }
 
-    public async Task<IEnumerable<TagEntity>> CreateTag(CourseModel model)
+    public async Task<IEnumerable<TagEntity>> CreateTag(CreateCourseModel model)
     {
         try
         {
@@ -273,7 +273,7 @@ public class CourseService(AppDbContext context)
         }
     }
 
-    public async Task<IEnumerable<WhatYouLearnEntity>> CreateWhatYouLearn(CourseModel model)
+    public async Task<IEnumerable<WhatYouLearnEntity>> CreateWhatYouLearn(CreateCourseModel model)
     {
         try
         {
@@ -308,7 +308,7 @@ public class CourseService(AppDbContext context)
         }
     }
 
-    public async Task<IEnumerable<IncludesEntity>> CreateIncludes(CourseModel model)
+    public async Task<IEnumerable<IncludesEntity>> CreateIncludes(CreateCourseModel model)
     {
         try
         {
@@ -343,7 +343,7 @@ public class CourseService(AppDbContext context)
         }
     }
 
-    public async Task<IEnumerable<ProgramDetailsEntity>> CreateProgramDetails(CourseModel model)
+    public async Task<IEnumerable<ProgramDetailsEntity>> CreateProgramDetails(CreateCourseModel model)
     {
         try
         {
