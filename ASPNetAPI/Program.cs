@@ -11,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<SubscribersService>();
 builder.Services.AddScoped<CourseService>();
+builder.Services.AddScoped<ContactService>();
 
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase")));
 builder.Services.RegisterJwt(builder.Configuration);

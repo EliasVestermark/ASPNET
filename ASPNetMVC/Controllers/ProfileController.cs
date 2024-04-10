@@ -180,11 +180,39 @@ public class ProfileController(UserManager<UserEntity> userManager, AddressServi
 
     public async Task<IActionResult> RemoveCourse(int courseId)
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var user = await _context.Users.Include(u => u.Courses).FirstOrDefaultAsync(x => x.Id == userId);
+
+        if (user! != null)
+        {
+            var courseToBeRemoved = user.Courses!.FirstOrDefault(x => x.Id == courseId);
+
+            if (courseToBeRemoved != null)
+            {
+                user.Courses!.Remove(courseToBeRemoved);
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         return RedirectToAction("SavedCourses", "Profile");
     }
 
     public async Task<IActionResult> RemoveAllCourses()
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var user = await _context.Users.Include(u => u.Courses).FirstOrDefaultAsync(x => x.Id == userId);
+
+        if (user!.Courses! != null)
+        {
+            foreach (var course  in user.Courses!)
+            {
+                user.Courses.Remove(course);
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         return RedirectToAction("SavedCourses", "Profile");
     }
 

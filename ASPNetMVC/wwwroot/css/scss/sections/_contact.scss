@@ -44,7 +44,7 @@
             }
         }
 
-        .sign-in-form {
+        .contact-form {
             background-color: $white;
             padding: 20px;
             display: flex;
@@ -111,6 +111,17 @@
 
             button {
                 align-self: baseline;
+            }
+
+            .message {
+
+                &.error {
+                    color: $danger;
+                }
+
+                &.success {
+                    color: #25c239;
+                }
             }
         }
     }

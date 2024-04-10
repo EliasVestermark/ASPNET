@@ -116,9 +116,8 @@
                             color: #6366F1;
                         }
 
-                        &.saved {                          
+                        &.saved {
                             color: $theme;
-                            
                         }
                     }
 
@@ -135,42 +134,45 @@
                     }
                 }
 
-                .details {
-                    padding: 16px;
+                .course-link {
 
                     &:hover {
                         cursor: pointer;
                         text-decoration: none;
                     }
 
-                    p {
-                        margin: 0;
-                        color: $gray-600;
-                    }
+                    .details {
+                        padding: 16px;
 
-                    h5 {
-                        margin-top: 0;
-                        color: $theme;
-
-                        &.sale {
-                            color: $danger;
+                        p {
+                            margin: 0;
+                            color: $gray-600;
                         }
 
-                        span {
-                            margin-left: 10px;
-                            color: #B4B7C9;
-                            font-weight: 400;
-                            text-decoration: line-through;
-                        }
-                    }
+                        h5 {
+                            margin-top: 0;
+                            color: $theme;
 
-                    .rating {
-                        border-top: 1px solid $gray-300;
-                        color: $gray-600;
-                        margin-top: 20px;
-                        padding-top: 20px;
-                        display: flex;
-                        gap: 30px;
+                            &.sale {
+                                color: $danger;
+                            }
+
+                            span {
+                                margin-left: 10px;
+                                color: #B4B7C9;
+                                font-weight: 400;
+                                text-decoration: line-through;
+                            }
+                        }
+
+                        .rating {
+                            border-top: 1px solid $gray-300;
+                            color: $gray-600;
+                            margin-top: 20px;
+                            padding-top: 20px;
+                            display: flex;
+                            gap: 30px;
+                        }
                     }
                 }
             }
@@ -180,7 +182,7 @@
             padding-top: 50px;
             align-self: center;
 
-            button {
+            a {
                 background-color: $white;
                 color: $gray-700;
                 border: none;

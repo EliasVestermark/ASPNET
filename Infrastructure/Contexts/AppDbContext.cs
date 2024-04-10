@@ -43,10 +43,5 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .HasMany(t => t.Courses)
             .WithMany(c => c.Tags)
             .UsingEntity(j => j.ToTable("CourseTags"));
-
-        //modelBuilder.Entity<LabelEntity>()
-        //    .HasMany(l => l.Courses)
-        //    .WithMany(c => c.Labels)
-        //    .UsingEntity(j => j.ToTable("CourseLabels"));
     }
 }
