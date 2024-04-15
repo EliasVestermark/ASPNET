@@ -79,7 +79,7 @@ public class CourseService(AppDbContext context)
 
     public async Task<IEnumerable<CourseModel>> GetPaginatedCourseModels(int pageSize, int page)
     {
-        int startIndex = (pageSize * page) - 3;
+        int startIndex = (pageSize * page) - 6;
         int endIndex = (pageSize * page) - 1;
         var paginatedList = new List<CourseModel>();
 

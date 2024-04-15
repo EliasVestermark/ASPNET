@@ -21,7 +21,7 @@ public class CoursesController(AppDbContext context, HttpClient http) : Controll
     private readonly HttpClient _http = http;
 
     [HttpGet]
-    public async Task<IActionResult> Courses(int pageSize = 3, int page = 1)
+    public async Task<IActionResult> Courses(int pageSize = 6, int page = 1)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
