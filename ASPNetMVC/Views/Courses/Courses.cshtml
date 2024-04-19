@@ -21,39 +21,6 @@
         </div>
         <div class="courses">
 
-            @* @for (int i = 0; i < 5; i++)
-            {
-            @foreach (var course in Model.Courses)
-            {
-            <div class="course">
-            <img src="@course!.BackgroundImage" alt="course image">
-            <div class="tags">
-
-            @foreach (var tag in course!.Tags)
-            {
-            <p class="tag @tag.ToLower()">@tag</p>
-            }
-
-            </div>
-            <div class="bookmark-remove">
-            <a asp-controller="Courses" asp-action="SaveCourse" asp-route-courseId="@course.Id" class="@(await Helper.IsCourseSavedByUser(course.Id, User.FindFirstValue(ClaimTypes.NameIdentifier)!) ? "bookmark saved" : "bookmark")"><i class="fa-solid fa-bookmark"></i></a>
-            <p class="remove">@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Courses") ? "Bookmark" : "Remove")</p>
-            </div>
-            <a class="course-link" asp asp-controller="Courses" asp-action="SingleCourse" asp-route-courseId="@course.Id">
-            <div class ="details">
-            <h4>@course.CourseTitle</h4>
-            <p class="author">By @course.Author</p>
-            <h5 class="@(string.IsNullOrEmpty(course.OldPrice) ? "" : "sale")">@course.NewPrice <span>@course.OldPrice</span></h5>
-            <div class="rating">
-            <p><i class="fa-regular fa-clock"></i> @course.Duration</p>
-            <p><i class="fa-regular fa-thumbs-up"></i> @course.LikesPercent (@course.Likes)</p>
-            </div>
-            </div>
-            </a>
-            </div>
-            }
-            } *@
-
             @foreach (var course in Model.Courses)
             {
                 <div class="course">
@@ -85,7 +52,7 @@
             }
         </div>
 
-        @if (Model.TotalCourses > 3)
+        @if (Model.TotalCourses > 6)
         {
             <div class="buttons">
 
@@ -99,12 +66,12 @@
                     <a><i class="fa-solid fa-angle-left"></i></a>
                 }
 
-                @for (int i = 1; i <= Math.Ceiling((double)Model.TotalCourses / 3); i++)
+                @for (int i = 1; i <= Math.Ceiling((double)Model.TotalCourses / 6); i++)
                 {
                     <a class="@(i == Model.Page ? "current" : "")" asp-controller="Courses" asp-action="Courses" asp-route-page="@i">@i</a>
                 }
 
-                @if (Model.Page < Math.Ceiling((double)Model.TotalCourses / 3))
+                @if (Model.Page < Math.Ceiling((double)Model.TotalCourses / 6))
                 {
                     int newPage = Model.Page + 1;
                     <a asp-controller="Courses" asp-action="Courses" asp-route-page="@newPage"><i class="fa-solid fa-angle-right"></i></a>
@@ -120,14 +87,6 @@
             </nav>
         }
 
-        @* <div class="buttons">
-        <button><i class="fa-solid fa-angle-left"></i></button>
-        <button>1</button>
-        <button class="current">2</button>
-        <button>3</button>
-        <button>4</button>
-        <button><i class="fa-solid fa-angle-right"></i></button>
-        </div> *@
         <div class="get-started">
             <div class="left">
                 <h3>Ready to get started with us?</h3>

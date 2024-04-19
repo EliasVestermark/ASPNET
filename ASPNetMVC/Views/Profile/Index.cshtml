@@ -9,9 +9,12 @@
     <div class="container">
         <div class="profile">
             <div class="image">
-                <img src="@Model.BasicInfo.ProfileImage" alt="">
-                <i class="fa-solid fa-arrows-rotate"></i>
-            </div>
+                <img src="@((!string.IsNullOrEmpty(Model.BasicInfo.ProfileImage)) ? $"/uploads/{Model.BasicInfo.ProfileImage}" : "/images/profile_placeholder.jpg")" alt="Profile Image">
+                <form enctype="multipart/form-data" method="post" asp-action="UploadImage" asp-controller="Profile">
+                    <input id="uploadFile" type="file" name="file" hidden />
+                    <label for="uploadFile" class="upload fa-solid fa-arrows-rotate"></label>
+                </form>
+          </div>
             <div class="name-email">
                 <h5>@Model.BasicInfo.FirstName @Model.BasicInfo.LastName</h5>
                 <p>@Model.BasicInfo.Email</p>
